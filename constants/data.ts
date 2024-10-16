@@ -167,7 +167,7 @@ export const navItems: NavItem[] = [
   },
   {
     title: "Customer List",
-    href: "/dashboard/customer-list",
+    href: "/dashboard/super-admin/customer-list",
     icon: "kanban",
     label: "kanban",
   },
