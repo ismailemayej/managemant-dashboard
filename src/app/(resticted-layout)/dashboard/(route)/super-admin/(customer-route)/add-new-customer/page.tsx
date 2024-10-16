@@ -1,14 +1,22 @@
 "use client";
 import SubmitButton from "@/components/button/SubmitButton";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import React from "react";
 import { useForm } from "react-hook-form";
 const page = () => {
   const {
     register,
     handleSubmit,
-    watch,
+
+    setValue,
     formState: { errors },
   } = useForm();
   const onSubmit = (data: any) => console.log(data);
@@ -61,6 +69,19 @@ const page = () => {
           {...register("example")}
         />
         {errors.exampleRequired && <span>This field is required</span>}
+        <Select onValueChange={(value) => setValue("gender", value)}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Select Gender" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem value="male">Male</SelectItem>
+              <SelectItem value="female">Female</SelectItem>
+              <SelectItem value="non-binary">Non-binary</SelectItem>
+              <SelectItem value="transgender">Transgender</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
 
         <SubmitButton className="w-full">Add Customer</SubmitButton>
       </form>
