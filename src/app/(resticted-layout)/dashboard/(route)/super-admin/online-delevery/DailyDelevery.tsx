@@ -6,7 +6,7 @@ import { columns } from "@/app/(resticted-layout)/components/online-delevery/dai
 const DailyDelevery = () => {
   return (
     <div className="mx-3">
-      <div className="  grid lg:grid-cols-4 justify-center grid-cols-2 gap-4">
+      <div className="grid lg:grid-cols-4 justify-center grid-cols-2 gap-4">
         <div className="lg:w-72 w-64 h-32 rounded-xl bg-slate-100 border pb-6 my-2">
           <div className="m-4">
             <h1 className=" text-lg ">Order</h1>
