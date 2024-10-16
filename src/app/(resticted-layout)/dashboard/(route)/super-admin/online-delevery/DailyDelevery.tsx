@@ -26,7 +26,6 @@ const DailyDelevery = () => {
           </div>
         </div>
       </div>
-
       <DailyDeleveryDataTable columns={columns} data={tasks} />
     </div>
   );

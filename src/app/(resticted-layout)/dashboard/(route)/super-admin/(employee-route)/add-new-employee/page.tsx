@@ -30,14 +30,14 @@ const page = () => {
           type="text"
           placeholder="Your Name"
           defaultValue=""
-          {...register("example")}
+          {...register("name")}
         />
         {errors.exampleRequired && <span>This field is required</span>}
         <Input
           type="text"
-          placeholder="Your Name"
+          placeholder="email"
           defaultValue=""
-          {...register("example")}
+          {...register("email")}
         />
         {errors.exampleRequired && <span>This field is required</span>}
         <Input

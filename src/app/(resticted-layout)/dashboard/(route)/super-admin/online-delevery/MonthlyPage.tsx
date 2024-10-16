@@ -8,12 +8,6 @@ import { columns } from "@/app/(resticted-layout)/components/online-delevery/mon
 const MonthlyPage = () => {
   return (
     <div className="mx-3">
-      <div className="flex gap-2 lg:ml-2 my-3">
-        <Link className="ml-2" href="/dashboard/super-admin/online-delevery">
-          <Button>Daily Delevery</Button>
-        </Link>
-        <Button disabled>Monthly Delevery</Button>
-      </div>
       {/* Cart */}
       <div className="flex gap-2 text-xl">
         <span className="font-semibold">Date:</span>20-10-2024
