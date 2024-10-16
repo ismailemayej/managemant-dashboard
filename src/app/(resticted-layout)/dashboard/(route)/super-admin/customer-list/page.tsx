@@ -1,7 +1,8 @@
 import React from 'react'
 import { columns } from '../../../../components/product-table/columns'
 import { tasks } from '../../../../components/product-table/data/tasks'
-import { ProductListDataTable } from '@/app/(resticted-layout)/components/product-table/product-list-data-table'
+import { CustomerListDataTable } from '@/app/(resticted-layout)/components/customer-table/customer-list-data-table'
+
 
 
 
@@ -9,7 +10,7 @@ import { ProductListDataTable } from '@/app/(resticted-layout)/components/produc
 const page = () => {
   return (
     <div>
-      <ProductListDataTable data={tasks} columns={columns} />
+      <CustomerListDataTable data={tasks} columns={columns} />
     </div>
   )
 }

@@ -24,15 +24,15 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
-import { DataTablePagination } from './data-table-pagination' 
-import { DataTableToolbar } from './data-table-toolbar' 
+import { DataTablePagination } from '../product-table/data-table-pagination'
+import { DataTableToolbar } from '../product-table/data-table-toolbar'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
 }
 
-export function DataTable<TData, TValue>({
+export function CustomerListDataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
