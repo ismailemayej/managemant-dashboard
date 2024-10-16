@@ -19,7 +19,7 @@ const MonthlyPage = () => {
         <span className="font-semibold">Date:</span>20-10-2024
       </div>
       <div className="grid lg:grid-cols-4 justify-center grid-cols-2 gap-2">
-        <div className="lg:w-72 w-64 h-32 rounded-xl bg-slate-100 border pb-6 my-">
+        <div className="lg:w-72 w-64 h-32 rounded-xl bg-slate-100 border pb-6 my-2">
           <div className="m-4">
             <h1 className=" text-lg ">Total Completed Order</h1>
             <h1 className="text-4xl font-bold mt-2">+3302</h1>
