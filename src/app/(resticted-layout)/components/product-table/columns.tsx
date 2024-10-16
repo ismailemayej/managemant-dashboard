@@ -7,6 +7,7 @@ import {  statuses } from './data/data';
 import { Task } from './data/schema';
 import DataTableProductCost from './data-table-product-cost';
 import DataTableProductPrice from './data-table-product-price';
+import DataTableProductRecipe from './data-table-product-recipe';
 
 export const columns: ColumnDef<Task>[] = [
   {
@@ -51,7 +52,7 @@ export const columns: ColumnDef<Task>[] = [
     accessorKey: 'id',
     id: 'productrecipe',
     header: 'Recipe',
-    cell: ({ row }) => <DataTableProductPrice row={row} />
+    cell: ({ row }) => <DataTableProductRecipe row={row} />
   },
   {
     accessorKey: 'status',
