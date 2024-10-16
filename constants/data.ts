@@ -1,4 +1,4 @@
-import { NavItem } from "../types"; 
+import { NavItem } from "../types";
 
 export type User = {
   id: number;
@@ -11,84 +11,84 @@ export type User = {
 export const users: User[] = [
   {
     id: 1,
-    name: 'Candice Schiner',
-    company: 'Dell',
-    role: 'Frontend Developer',
+    name: "Candice Schiner",
+    company: "Dell",
+    role: "Frontend Developer",
     verified: false,
-    status: 'Active'
+    status: "Active",
   },
   {
     id: 2,
-    name: 'John Doe',
-    company: 'TechCorp',
-    role: 'Backend Developer',
+    name: "John Doe",
+    company: "TechCorp",
+    role: "Backend Developer",
     verified: true,
-    status: 'Active'
+    status: "Active",
   },
   {
     id: 3,
-    name: 'Alice Johnson',
-    company: 'WebTech',
-    role: 'UI Designer',
+    name: "Alice Johnson",
+    company: "WebTech",
+    role: "UI Designer",
     verified: true,
-    status: 'Active'
+    status: "Active",
   },
   {
     id: 4,
-    name: 'David Smith',
-    company: 'Innovate Inc.',
-    role: 'Fullstack Developer',
+    name: "David Smith",
+    company: "Innovate Inc.",
+    role: "Fullstack Developer",
     verified: false,
-    status: 'Inactive'
+    status: "Inactive",
   },
   {
     id: 5,
-    name: 'Emma Wilson',
-    company: 'TechGuru',
-    role: 'Product Manager',
+    name: "Emma Wilson",
+    company: "TechGuru",
+    role: "Product Manager",
     verified: true,
-    status: 'Active'
+    status: "Active",
   },
   {
     id: 6,
-    name: 'James Brown',
-    company: 'CodeGenius',
-    role: 'QA Engineer',
+    name: "James Brown",
+    company: "CodeGenius",
+    role: "QA Engineer",
     verified: false,
-    status: 'Active'
+    status: "Active",
   },
   {
     id: 7,
-    name: 'Laura White',
-    company: 'SoftWorks',
-    role: 'UX Designer',
+    name: "Laura White",
+    company: "SoftWorks",
+    role: "UX Designer",
     verified: true,
-    status: 'Active'
+    status: "Active",
   },
   {
     id: 8,
-    name: 'Michael Lee',
-    company: 'DevCraft',
-    role: 'DevOps Engineer',
+    name: "Michael Lee",
+    company: "DevCraft",
+    role: "DevOps Engineer",
     verified: false,
-    status: 'Active'
+    status: "Active",
   },
   {
     id: 9,
-    name: 'Olivia Green',
-    company: 'WebSolutions',
-    role: 'Frontend Developer',
+    name: "Olivia Green",
+    company: "WebSolutions",
+    role: "Frontend Developer",
     verified: true,
-    status: 'Active'
+    status: "Active",
   },
   {
     id: 10,
-    name: 'Robert Taylor',
-    company: 'DataTech',
-    role: 'Data Analyst',
+    name: "Robert Taylor",
+    company: "DataTech",
+    role: "Data Analyst",
     verified: false,
-    status: 'Active'
-  }
+    status: "Active",
+  },
 ];
 
 export type Employee = {
@@ -123,58 +123,58 @@ export type Product = {
 
 export const navItems: NavItem[] = [
   {
-    title: 'Dashboard',
-    href: '/dashboard',
-    icon: 'dashboard',
-    label: 'Dashboard'
+    title: "Dashboard",
+    href: "/dashboard",
+    icon: "dashboard",
+    label: "Dashboard",
   },
   {
-    title: 'Employee List',
-    href: '/dashboard/employee-list',
-    icon: 'user',
-    label: 'employee'
+    title: "Employee List",
+    href: "/dashboard/super-admin/employee-list",
+    icon: "user",
+    label: "employee",
   },
   {
-    title: 'Product List',
-    href: '/dashboard/product-list',
-    icon: 'product',
-    label: 'product'
+    title: "Product List",
+    href: "/dashboard/super-admin/product-list",
+    icon: "product",
+    label: "product",
   },
   {
-    title: 'Online Delivery',
-    href: '/dashboard/online-delivery',
-    icon: 'product',
-    label: 'product'
+    title: "Online Delivery",
+    href: "/dashboard/super-admin/online-delevery",
+    icon: "product",
+    label: "product",
   },
   {
-    title: 'Account',
-    icon: 'user',
-    label: 'account',
+    title: "Account",
+    icon: "user",
+    label: "account",
     children: [
       {
-        title: 'Profile',
-        href: '/dashboard/profile',
-        icon: 'userPen',
-        label: 'profile'
+        title: "Profile",
+        href: "/dashboard/profile",
+        icon: "userPen",
+        label: "profile",
       },
       {
-        title: 'Login',
-        href: '/',
-        icon: 'login',
-        label: 'login'
-      }
-    ]
+        title: "Login",
+        href: "/",
+        icon: "login",
+        label: "login",
+      },
+    ],
   },
   {
-    title: 'Customer List',
-    href: '/dashboard/customer-list',
-    icon: 'kanban',
-    label: 'kanban'
+    title: "Customer List",
+    href: "/dashboard/super-admin/customer-list",
+    icon: "kanban",
+    label: "kanban",
   },
   {
-    title: 'Marketing Strategy',
-    href: '/dashboard/marketing-strategy',
-    icon: 'kanban',
-    label: 'kanban'
-  }
+    title: "Marketing Strategy",
+    href: "/dashboard/marketing-strategy",
+    icon: "kanban",
+    label: "kanban",
+  },
 ];
