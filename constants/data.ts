@@ -166,9 +166,15 @@ export const navItems: NavItem[] = [
     ],
   },
   {
+    title: "Admin",
+    href: "/dashboard/super-admin/all-admin",
+    icon: "kanban",
+    label: "kanban",
+  },
+  {
     title: "Customer List",
     href: "/dashboard/super-admin/customer-list",
-    icon: "kanban",
+    icon: "user2",
     label: "kanban",
   },
   {
