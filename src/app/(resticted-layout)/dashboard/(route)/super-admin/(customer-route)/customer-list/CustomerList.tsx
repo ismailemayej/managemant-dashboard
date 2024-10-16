@@ -9,7 +9,7 @@ const CustomerList = () => {
   return (
     <div className="mx-4">
       <Link href="/dashboard/super-admin/add-new-customer">
-        <Button className="my-3">Add New Customer</Button>
+        <Button className="my-3">Add Customer</Button>
       </Link>
       <CustomerListDataTable data={tasks} columns={columns} />
     </div>
