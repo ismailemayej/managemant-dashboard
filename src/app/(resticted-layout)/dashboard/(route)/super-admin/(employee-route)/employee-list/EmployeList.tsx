@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import UiRoute from "@/components/UiRoute/UiRoute";
 import CommonButton from "@/components/button/CummonButton";
+import Title from "@/components/Title/Title";
 
 const EmployeList = () => {
   const pathRoute = [
@@ -20,8 +21,10 @@ const EmployeList = () => {
   ];
   return (
     <div className="mx-4">
-      <UiRoute
-        routes={pathRoute}
+      <UiRoute routes={pathRoute} />
+      <Title
+        title="Total Employee"
+        subtitle="Manage employees (Server side table functionalities."
         right={
           <CommonButton link="/dashboard/super-admin/add-new-employee">
             Add New Employee

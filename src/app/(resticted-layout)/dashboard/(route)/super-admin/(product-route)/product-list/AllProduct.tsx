@@ -4,6 +4,7 @@ import { tasks } from "../../../../../components/product-table/data/tasks";
 import { ProductListDataTable } from "@/app/(resticted-layout)/components/product-table/product-list-data-table";
 import UiRoute from "@/components/UiRoute/UiRoute";
 import CommonButton from "@/components/button/CummonButton";
+import Title from "@/components/Title/Title";
 const AllProduct = () => {
   const pathRoute = [
     {
@@ -17,8 +18,10 @@ const AllProduct = () => {
   ];
   return (
     <div className="mx-4">
-      <UiRoute
-        routes={pathRoute}
+      <UiRoute routes={pathRoute} />
+      <Title
+        title="Total Products"
+        subtitle="Manage employees (Server side table functionalities.)"
         right={
           <CommonButton link="/dashboard/super-admin/add-new-product">
             Add New Product
