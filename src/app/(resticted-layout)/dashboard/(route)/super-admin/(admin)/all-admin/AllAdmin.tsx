@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import UiRoute from "@/components/UiRoute/UiRoute";
 import CommonButton from "@/components/button/CummonButton";
 import Title from "@/components/Title/Title";
+import { Modal } from "@/components/dialog/Dialog";
 
 const AllAdmin = () => {
   const pathRoute = [
@@ -50,11 +51,13 @@ const AllAdmin = () => {
             <h2 className="text-xl font-bold">{user.name}</h2>
             <p className="text-gray-600">{user.email}</p>
             <p className="text-gray-600">{user.mobile}</p>
-            <Link href={`/dashboard/super-admin/admin/${user.id}`}>
-              <Button className="mt-6 w-full absolute bottom-2">
-                View Details
-              </Button>
-            </Link>
+            <div className="w-full absolute bottom-1">
+              <Modal
+                button="View Details"
+                name="User Information"
+                body="user Information ,user Details"
+              />
+            </div>
           </div>
         ))}
       </div>
