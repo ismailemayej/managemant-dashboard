@@ -21,7 +21,7 @@ const UiRoute = ({
           {routes?.map((route, index) => (
             <li
               key={index}
-              className="inline-flex items-center hover:text-blue-500 hover:font-bold"
+              className="inline-flex font-bold items-center hover:text-blue-500"
             >
               <Link
                 href={route.link}
