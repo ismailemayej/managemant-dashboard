@@ -18,7 +18,6 @@ import { Modal } from "@/components/dialog/Dialog";
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
 }
-
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
@@ -36,7 +35,7 @@ export function DataTableRowActions<TData>({
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
         <DropdownMenuItem>
-          <Modal button="Edit" name="Employee" body="this is edit option" />
+          <Modal button="Editt" name="Employee" body="this is edit option" />
           <DropdownMenuShortcut>⌘</DropdownMenuShortcut>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
