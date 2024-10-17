@@ -1,15 +1,8 @@
 "use client";
 import SubmitButton from "@/components/button/SubmitButton";
+import DynamicRoute from "@/components/DynamicRoute";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import React from "react";
 import { useForm } from "react-hook-form";
 const NewProduct = () => {
@@ -19,6 +12,7 @@ const NewProduct = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data: any) => console.log(data);
+
   return (
     <div>
       <h1 className="text-center text-3xl font-bold">Add New Product</h1>

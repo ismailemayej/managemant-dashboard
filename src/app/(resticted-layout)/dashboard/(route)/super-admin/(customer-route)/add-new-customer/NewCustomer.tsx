@@ -9,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import UiRoute from "@/components/UiRoute/UiRoute";
 import React from "react";
 import { useForm } from "react-hook-form";
 const NewCustomer = () => {
@@ -19,8 +20,14 @@ const NewCustomer = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data: any) => console.log(data);
+  const routes = [
+    { name: "Dashboard", link: "/dashboard/super-admin" },
+    { name: "Customers", link: "/dashboard/super-admin/customer-list" },
+    { name: "add Customers", link: "/dashboard/super-admin/add-new-customer" },
+  ];
   return (
     <div>
+      <UiRoute routes={routes} />
       <h1 className="text-center text-3xl font-bold">Add New Customer</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
