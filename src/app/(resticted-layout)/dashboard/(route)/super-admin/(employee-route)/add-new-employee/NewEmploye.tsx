@@ -39,46 +39,51 @@ const NewEmploye = () => {
       >
         <Input
           type="text"
-          placeholder="Your Name"
+          placeholder="Employee Name"
           defaultValue=""
-          {...register("name")}
+          {...register("name", { required: true })}
         />
-        {errors.exampleRequired && <span>This field is required</span>}
+        {errors.name && <span>This field is required</span>}
         <Input
           type="text"
-          placeholder="email"
+          placeholder="Designation"
           defaultValue=""
-          {...register("email")}
+          {...register("designation", { required: true })}
         />
-        {errors.exampleRequired && <span>This field is required</span>}
+        {errors.designation && <span>This field is required</span>}
         <Input
           type="text"
-          placeholder="Your Name"
+          placeholder="Phone Number"
           defaultValue=""
-          {...register("example")}
+          {...register("phone", { required: true })}
         />
-        {errors.exampleRequired && <span>This field is required</span>}
+        {errors.phone && <span>This field is required</span>}
+        <Input
+          type="email"
+          placeholder="E-mail"
+          defaultValue=""
+          {...register("email", {
+            required: true,
+            pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+          })}
+        />
+        {errors.email && (
+          <span>This field is required and must be a valid email</span>
+        )}
         <Input
           type="text"
-          placeholder="Your Name"
+          placeholder="Address"
           defaultValue=""
-          {...register("example")}
+          {...register("address", { required: true })}
         />
-        {errors.exampleRequired && <span>This field is required</span>}
+        {errors.address && <span>This field is required</span>}
         <Input
-          type="text"
-          placeholder="Your Name"
+          type="number"
+          placeholder="Salary"
           defaultValue=""
-          {...register("example")}
+          {...register("salary", { required: true, valueAsNumber: true })}
         />
-        {errors.exampleRequired && <span>This field is required</span>}
-        <Input
-          type="text"
-          placeholder="Your Name"
-          defaultValue=""
-          {...register("example")}
-        />
-        {errors.exampleRequired && <span>This field is required</span>}
+        {errors.salary && <span>This field is required</span>}
         <Select onValueChange={(value) => setValue("gender", value)}>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Select Gender" />

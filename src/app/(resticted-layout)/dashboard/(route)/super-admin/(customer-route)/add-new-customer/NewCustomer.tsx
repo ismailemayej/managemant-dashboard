@@ -35,57 +35,51 @@ const NewCustomer = () => {
         className="grid lg:grid-cols-2 grid-cols-1 lg:gap-8 gap-4 mx-5 lg:mx-10 border rounded-lg p-6 "
       >
         <Input
-          type="text"
-          placeholder="Your Name"
+          type="number"
+          placeholder="SL Number"
           defaultValue=""
-          {...register("example")}
+          {...register("slNumber", { required: true, valueAsNumber: true })}
         />
-        {errors.exampleRequired && <span>This field is required</span>}
+        {errors.slNumber && <span>This field is required</span>}
         <Input
           type="text"
-          placeholder="Your Name"
+          placeholder="Customer’s name"
           defaultValue=""
-          {...register("example")}
+          {...register("customerName", { required: true })}
         />
-        {errors.exampleRequired && <span>This field is required</span>}
+        {errors.customerName && <span>This field is required</span>}
         <Input
           type="text"
-          placeholder="Your Name"
+          placeholder="Phone Number"
           defaultValue=""
-          {...register("example")}
+          {...register("phoneNumber", { required: true })}
         />
-        {errors.exampleRequired && <span>This field is required</span>}
+        {errors.phoneNumber && <span>This field is required</span>}
         <Input
           type="text"
-          placeholder="Your Name"
+          placeholder="Address"
           defaultValue=""
-          {...register("example")}
+          {...register("address", { required: true })}
         />
-        {errors.exampleRequired && <span>This field is required</span>}
+        {errors.address && <span>This field is required</span>}
         <Input
-          type="text"
-          placeholder="Your Name"
+          type="number"
+          placeholder="Number of Purchase"
           defaultValue=""
-          {...register("example")}
+          {...register("numberOfPurchase", {
+            required: true,
+            valueAsNumber: true,
+          })}
         />
-        {errors.exampleRequired && <span>This field is required</span>}
-        <Input
-          type="text"
-          placeholder="Your Name"
-          defaultValue=""
-          {...register("example")}
-        />
-        {errors.exampleRequired && <span>This field is required</span>}
-        <Select onValueChange={(value) => setValue("gender", value)}>
+        {errors.numberOfPurchase && <span>This field is required</span>}
+        <Select onValueChange={(value) => setValue("purchaseType", value)}>
           <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Select Gender" />
+            <SelectValue placeholder="Regular/Irregular" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectItem value="male">Male</SelectItem>
-              <SelectItem value="female">Female</SelectItem>
-              <SelectItem value="non-binary">Non-binary</SelectItem>
-              <SelectItem value="transgender">Transgender</SelectItem>
+              <SelectItem value="regular">Regular</SelectItem>
+              <SelectItem value="irregular">Irregular</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>

@@ -24,7 +24,7 @@ const NewAdmin = () => {
     { name: "Dashboard", link: "/dashboard/super-admin" },
     { name: "Admin", link: "/dashboard/super-admin/all-admin" },
     {
-      name: "add New Admin",
+      name: "Add New Admin",
       link: "/dashboard/super-admin/add-new-admin",
     },
   ];
@@ -39,60 +39,53 @@ const NewAdmin = () => {
       >
         <Input
           type="text"
-          placeholder="Your Name"
+          placeholder="Admin Name"
           defaultValue=""
           {...register("name", { required: true })}
         />
         {errors.name && <span>This field is required</span>}
         <Input
           type="text"
-          placeholder="Your Name"
+          placeholder="Admin ID"
           defaultValue=""
-          {...register("example")}
+          {...register("id", {
+            required: true,
+            pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+          })}
         />
-        {errors.exampleRequired && <span>This field is required</span>}
+        {errors.id && (
+          <span>This field is required and must be a valid email</span>
+        )}
         <Input
           type="text"
-          placeholder="Your Name"
+          placeholder="Admin Email"
           defaultValue=""
-          {...register("example")}
+          {...register("email", {
+            required: true,
+            pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+          })}
         />
-        {errors.exampleRequired && <span>This field is required</span>}
+        {errors.email && (
+          <span>This field is required and must be a valid email</span>
+        )}
         <Input
-          type="text"
-          placeholder="Your Name"
+          type="password"
+          placeholder="Admin Password"
           defaultValue=""
-          {...register("example")}
+          {...register("password", { required: true })}
         />
-        {errors.exampleRequired && <span>This field is required</span>}
-        <Input
-          type="text"
-          placeholder="Your Name"
-          defaultValue=""
-          {...register("example")}
-        />
-        {errors.exampleRequired && <span>This field is required</span>}
-        <Input
-          type="text"
-          placeholder="Your Name"
-          defaultValue=""
-          {...register("example")}
-        />
-        {errors.exampleRequired && <span>This field is required</span>}
-        <Select onValueChange={(value) => setValue("gender", value)}>
+        {errors.password && <span>This field is required</span>}
+        <Select onValueChange={(value) => setValue("role", value)}>
           <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Select Gender" />
+            <SelectValue placeholder="Select Role" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectItem value="male">Male</SelectItem>
-              <SelectItem value="female">Female</SelectItem>
-              <SelectItem value="non-binary">Non-binary</SelectItem>
-              <SelectItem value="transgender">Transgender</SelectItem>
+              <SelectItem value="admin">Admin</SelectItem>
+              <SelectItem value="employee">Employee</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
-
         <SubmitButton className="w-full">Add Admin</SubmitButton>
       </form>
     </div>
