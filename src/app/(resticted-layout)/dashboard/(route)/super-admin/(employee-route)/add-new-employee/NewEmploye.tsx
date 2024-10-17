@@ -9,6 +9,7 @@ import {
   SelectContent,
   SelectGroup,
 } from "@/components/ui/select";
+import UiRoute from "@/components/UiRoute/UiRoute";
 import React from "react";
 import { useForm } from "react-hook-form";
 const NewEmploye = () => {
@@ -19,8 +20,17 @@ const NewEmploye = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data: any) => console.log(data);
+  const routes = [
+    { name: "Dashboard", link: "/dashboard/super-admin" },
+    { name: "Employee", link: "/dashboard/super-admin/employee-list" },
+    {
+      name: "add New Employee",
+      link: "/dashboard/super-admin/add-new-employee",
+    },
+  ];
   return (
     <div>
+      <UiRoute routes={routes} />
       <h1 className="text-center text-3xl font-bold">Add New Employee</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}

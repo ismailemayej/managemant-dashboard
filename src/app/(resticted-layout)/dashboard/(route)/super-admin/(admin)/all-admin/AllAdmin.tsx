@@ -2,8 +2,20 @@ import React from "react";
 import { faker } from "@faker-js/faker";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import UiRoute from "@/components/UiRoute/UiRoute";
+import CommonButton from "@/components/button/CummonButton";
 
 const AllAdmin = () => {
+  const pathRoute = [
+    {
+      name: "Dashboard",
+      link: "/dashboard/super-admin",
+    },
+    {
+      name: "Admin",
+      link: "/dashboard/super-admin/all-admin",
+    },
+  ];
   const users = Array.from({ length: 10 }, (_, index) => ({
     id: index + 1,
     name: faker.name.firstName() + " " + faker.name.lastName(),
@@ -14,10 +26,16 @@ const AllAdmin = () => {
 
   return (
     <div className="mx-4">
-      <Link href="/dashboard/super-admin/add-new-admin">
-        <Button className="my-3">Add New Admin</Button>
-      </Link>
-      <h1 className="text-center text-3xl font-bold">All Admins</h1>
+      <UiRoute
+        routes={pathRoute}
+        right={
+          <CommonButton link="/dashboard/super-admin/add-new-admin">
+            Add New Admin
+          </CommonButton>
+        }
+      />
+
+      <h1 className="text-center text-3xl font-bold my-2">All Admins</h1>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4">
         {users.map((user) => (
           <div key={user.id} className="p-4 border rounded-lg relative h-96">

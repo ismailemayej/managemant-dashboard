@@ -17,7 +17,7 @@ const UiRoute = ({
   return (
     <section className="py-2 flex justify-between">
       <div className="container max-w-screen-xl mx-auto px-4">
-        <ol className="inline-flex flex-wrap text-gray-600 border px-4 rounded-lg space-x-1 md:space-x-3 items-center">
+        <ol className="inline-flex flex-wrap text-gray-600 space-x-1 md:space-x-3 items-center">
           {routes?.map((route, index) => (
             <li
               key={index}
