@@ -20,7 +20,7 @@ const page = () => {
         routes={pathRoute}
         right={
           <CommonButton link="/dashboard/super-admin/add-new-customer">
-            Add Customer
+            Add New Customer
           </CommonButton>
         }
       />

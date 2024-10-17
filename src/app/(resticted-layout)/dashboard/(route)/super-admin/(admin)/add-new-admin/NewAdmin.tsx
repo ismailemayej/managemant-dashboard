@@ -41,9 +41,9 @@ const NewAdmin = () => {
           type="text"
           placeholder="Your Name"
           defaultValue=""
-          {...register("example")}
+          {...register("name", { required: true })}
         />
-        {errors.exampleRequired && <span>This field is required</span>}
+        {errors.name && <span>This field is required</span>}
         <Input
           type="text"
           placeholder="Your Name"
