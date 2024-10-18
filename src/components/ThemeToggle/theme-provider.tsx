@@ -1,11 +1,12 @@
-'use client';
+"use client";
+import { store } from "@/redux/store";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { type ThemeProviderProps } from "next-themes/dist/types";
+import { Provider } from "react-redux";
 
-import { ThemeProvider as NextThemesProvider } from 'next-themes';
-import { type ThemeProviderProps } from 'next-themes/dist/types';
+export default function ThemeProvider({children,...props}:ThemeProviderProps) {
 
-export default function ThemeProvider({
-  children,
-  ...props
-}: ThemeProviderProps) {
-  return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
+  return<Provider store={store}>
+    <NextThemesProvider {...props}>{children}</NextThemesProvider>
+  </Provider>;
 }
