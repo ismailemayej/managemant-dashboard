@@ -1,19 +1,17 @@
-
 import { baseApi } from "./baseApi";
 import { tagTypes } from "../tag-types";
 import { IMeta } from "../../../types";
-
-const PATH = "/order"
-
+const PATH = "/order";
 export const ordersApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     createCustomerOrder: build.mutation({
       query: (data) => {
         return {
-        url: `${PATH}/create-order`,
-        method: "POST",
-        data,
-      }},
+          url: `${PATH}/create-order`,
+          method: "POST",
+          data,
+        };
+      },
       invalidatesTags: [tagTypes.order],
     }),
     getAllOrder: build.query({
@@ -58,18 +56,18 @@ export const ordersApi = baseApi.injectEndpoints({
 
     updateOrderPaymentStatus: build.mutation({
       query: ({ id, data }) => {
-       console.log("🚀 ~ paymentStatus:", data)
-       
+        console.log("🚀 ~ paymentStatus:", data);
+
         return {
           url: `${PATH}/payment-status/${id}`,
           method: "PATCH",
-         
+
           body: JSON.stringify({ data }),
-        }
+        };
       },
       invalidatesTags: [tagTypes.order],
     }),
-    
+
     deleteOrder: build.mutation({
       query: (id) => ({
         url: `${PATH}/product/soft/${id}`,
@@ -81,9 +79,9 @@ export const ordersApi = baseApi.injectEndpoints({
 });
 
 export const {
-    useCreateCustomerOrderMutation, 
-    useGetAllOrderQuery, 
-    useGetSingleOrderQuery, 
-    useUpdateOrderPaymentStatusMutation, 
-    useGetMyOrdersQuery
+  useCreateCustomerOrderMutation,
+  useGetAllOrderQuery,
+  useGetSingleOrderQuery,
+  useUpdateOrderPaymentStatusMutation,
+  useGetMyOrdersQuery,
 } = ordersApi;
