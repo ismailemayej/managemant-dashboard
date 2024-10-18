@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { authKey } from '@/contants/authkey';
 import setAccessToken from '@/services/actions/setAccessToken';
 import { getNewAccessToken } from '@/services/auth.services';
-import { IGenericErrorResponse, ResponseSuccessType } from '@/types/common';
+import { IGenericErrorResponse, ResponseSuccessType } from '../../../types/common';
 import { getFromLocalStorage, setToLocalStorage } from '@/utils/local-storage';
 import axios from 'axios';
+
 
 const instance = axios.create();
 instance.defaults.headers.post['Content-Type'] = 'application/json';

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
 import { Post } from "@/components/ApiHandle";
 import SubmitButton from "@/components/button/SubmitButton";
