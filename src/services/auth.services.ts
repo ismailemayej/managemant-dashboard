@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { authKey } from '@/contants/authkey';
 import { instance as axiosInstance } from '@/helper/axios/axiosInstance';
 import { decodedToken } from '@/utils/jwt';
