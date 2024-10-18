@@ -76,8 +76,24 @@ export default function AddProduct() {
   };
 
   const onSubmit = async (formValues: z.infer<typeof ProductSchema>) => {
-    const data = { image, ...formValues };
+    const data = {
+      ...formValues,
+      price: {
+        onlinePrice: Number(formValues.price.onlinePrice),
+        retailPrice: Number(formValues.price.retailPrice),
+        wholesalePrice: Number(formValues.price.wholesalePrice),
+      },
+      cost: {
+        materialCost: Number(formValues.cost.materialCost),
+        labourCost: Number(formValues.cost.labourCost),
+        maintenanceCost: Number(formValues.cost.maintenanceCost),
+        transportationCost: Number(formValues.cost.transportationCost),
+      },
+      image,
+    };
+  
 
+    console.log("🚀 ~ onSubmit ~ data:", data)
     try {
       const res = await createProduct(data).unwrap();
       console.log("🚀 ~ onSubmit ~ res:", res);
@@ -232,7 +248,9 @@ export default function AddProduct() {
                                   <FormItem>
                                     <FormLabel>Online Price</FormLabel>
                                     <FormControl>
-                                      <Input {...field} type="number" />
+                                      <Input {...field}  type="number"  onChange={(e) => field.onChange(Number(e.target.value))}
+                                       
+                                      />
                                     </FormControl>
                                     <FormMessage />
                                   </FormItem>
@@ -246,7 +264,7 @@ export default function AddProduct() {
                                   <FormItem>
                                     <FormLabel>Retail Price</FormLabel>
                                     <FormControl>
-                                      <Input {...field} type="number" />
+                                      <Input {...field}  type="number"  onChange={(e) => field.onChange(Number(e.target.value))}  />
                                     </FormControl>
                                     <FormMessage />
                                   </FormItem>
@@ -260,7 +278,7 @@ export default function AddProduct() {
                                   <FormItem>
                                     <FormLabel>Wholesale Price</FormLabel>
                                     <FormControl>
-                                      <Input {...field} type="number" />
+                                      <Input {...field}  type="number"  onChange={(e) => field.onChange(Number(e.target.value))}  />
                                     </FormControl>
                                     <FormMessage />
                                   </FormItem>
@@ -270,12 +288,12 @@ export default function AddProduct() {
                             <TableCell>
                               <FormField
                                 control={form.control}
-                                name="price.onlinePrice"
+                                name="cost.materialCost"
                                 render={({ field }) => (
                                   <FormItem>
-                                    <FormLabel>Online Price</FormLabel>
+                                    <FormLabel>Material Cost</FormLabel>
                                     <FormControl>
-                                      <Input {...field} type="number" />
+                                      <Input {...field}  type="number"  onChange={(e) => field.onChange(Number(e.target.value))}  />
                                     </FormControl>
                                     <FormMessage />
                                   </FormItem>
@@ -284,12 +302,12 @@ export default function AddProduct() {
 
                               <FormField
                                 control={form.control}
-                                name="price.retailPrice"
+                                name="cost.labourCost"
                                 render={({ field }) => (
                                   <FormItem>
-                                    <FormLabel>Retail Price</FormLabel>
+                                    <FormLabel>Labour Cost</FormLabel>
                                     <FormControl>
-                                      <Input {...field} type="number" />
+                                      <Input {...field}  type="number"  onChange={(e) => field.onChange(Number(e.target.value))} />
                                     </FormControl>
                                     <FormMessage />
                                   </FormItem>
@@ -298,12 +316,25 @@ export default function AddProduct() {
 
                               <FormField
                                 control={form.control}
-                                name="price.wholesalePrice"
+                                name="cost.maintenanceCost"
                                 render={({ field }) => (
                                   <FormItem>
-                                    <FormLabel>Wholesale Price</FormLabel>
+                                    <FormLabel>Maintenance Cost</FormLabel>
                                     <FormControl>
-                                      <Input {...field} type="number" />
+                                      <Input {...field}  type="number"  onChange={(e) => field.onChange(Number(e.target.value))} />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                              <FormField
+                                control={form.control}
+                                name="cost.transportationCost"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel>Transportation Cost</FormLabel>
+                                    <FormControl>
+                                      <Input {...field}  type="number"  onChange={(e) => field.onChange(Number(e.target.value))} />
                                     </FormControl>
                                     <FormMessage />
                                   </FormItem>
