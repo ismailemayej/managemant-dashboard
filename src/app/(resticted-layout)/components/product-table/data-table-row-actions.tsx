@@ -11,14 +11,15 @@ export function DataTableRowActions<TData>({
 }: DataTableRowActionsProps<TData>) {
   // const task = taskSchema.parse(row.original)
   return (
-    <div className="flex gap-1">
+    <div className="flex justify-center border rounded-lg">
       <Modal2
-        button={<PencilOff className="text-red-500" />}
+        button={
+          <PencilOff className="text-red-500 p-1 border-r hover:bg-slate-300" />
+        }
         name="Employee"
         body={<ManageProduct />}
       />
-      ;
-      <Trash2 />
+      <Trash2 className="text-red-500 p-1" />
     </div>
   );
 }
