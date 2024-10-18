@@ -41,7 +41,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
 import { getUserInfo } from "@/services/auth.services";
-import { ProductDefaultValues, ProductSchema } from "./productValidation"
+import { ProductDefaultValues, ProductSchema } from "./productValidation";
 import { useCreateProductMutation } from "@/redux/api/productsApi";
 import dynamic from "next/dynamic";
 import { handleDeleteImage } from "@/utils/handleCloudinaryFileDelete";
@@ -52,7 +52,7 @@ export default function AddProduct() {
   const [userRole, setUserRole] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [image, setImage] = useState<string | undefined>();
-  
+
   const [createProduct, { isLoading, error }] = useCreateProductMutation();
   const form = useForm<z.infer<typeof ProductSchema>>({
     resolver: zodResolver(ProductSchema),
@@ -63,11 +63,9 @@ export default function AddProduct() {
     setUserRole(role);
   }, []);
   const {
-   
     formState: { errors },
   } = form;
 
- 
   console.log("from error ", errors);
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -78,20 +76,15 @@ export default function AddProduct() {
   };
 
   const onSubmit = async (formValues: z.infer<typeof ProductSchema>) => {
-  
     const data = { image, ...formValues };
 
     try {
       const res = await createProduct(data).unwrap();
-      console.log("🚀 ~ onSubmit ~ res:", res)
+      console.log("🚀 ~ onSubmit ~ res:", res);
     } catch (error) {
       console.error("Failed to create product:", error);
     }
   };
-
-
-
- 
 
   useEffect(() => {
     const uploadImage = async () => {
@@ -167,7 +160,6 @@ export default function AddProduct() {
 
               <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
                 <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
-                  
                   <Card x-chunk="dashboard-07-chunk-0">
                     <CardHeader>
                       <CardTitle>Product Details</CardTitle>
@@ -237,56 +229,96 @@ export default function AddProduct() {
                         <TableBody>
                           <TableRow>
                             <TableCell>
-                            <FormField
-  control={form.control}
-  name="price.onlinePrice"
-  render={({ field }) => (
-    <FormItem>
-      <FormLabel>Online Price</FormLabel>
-      <FormControl>
-        <Input {...field} type="number" />
-      </FormControl>
-      <FormMessage />
-    </FormItem>
-  )}
-/>
+                              <FormField
+                                control={form.control}
+                                name="price.onlinePrice"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel>Online Price</FormLabel>
+                                    <FormControl>
+                                      <Input {...field} type="number" />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
 
-<FormField
-  control={form.control}
-  name="price.retailPrice"
-  render={({ field }) => (
-    <FormItem>
-      <FormLabel>Retail Price</FormLabel>
-      <FormControl>
-        <Input {...field} type="number" />
-      </FormControl>
-      <FormMessage />
-    </FormItem>
-  )}
-/>
+                              <FormField
+                                control={form.control}
+                                name="price.retailPrice"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel>Retail Price</FormLabel>
+                                    <FormControl>
+                                      <Input {...field} type="number" />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
 
-<FormField
-  control={form.control}
-  name="price.wholesalePrice"
-  render={({ field }) => (
-    <FormItem>
-      <FormLabel>Wholesale Price</FormLabel>
-      <FormControl>
-        <Input {...field} type="number" />
-      </FormControl>
-      <FormMessage />
-    </FormItem>
-  )}
-/>
-
+                              <FormField
+                                control={form.control}
+                                name="price.wholesalePrice"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel>Wholesale Price</FormLabel>
+                                    <FormControl>
+                                      <Input {...field} type="number" />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
                             </TableCell>
-                         
+                            <TableCell>
+                              <FormField
+                                control={form.control}
+                                name="price.onlinePrice"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel>Online Price</FormLabel>
+                                    <FormControl>
+                                      <Input {...field} type="number" />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+
+                              <FormField
+                                control={form.control}
+                                name="price.retailPrice"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel>Retail Price</FormLabel>
+                                    <FormControl>
+                                      <Input {...field} type="number" />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+
+                              <FormField
+                                control={form.control}
+                                name="price.wholesalePrice"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel>Wholesale Price</FormLabel>
+                                    <FormControl>
+                                      <Input {...field} type="number" />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                            </TableCell>
                           </TableRow>
                         </TableBody>
                       </Table>
                     </CardContent>
                   </Card>
-                  
                 </div>
                 <div className="grid auto-rows-max items-start gap-4 lg:gap-8">
                   <Card x-chunk="dashboard-07-chunk-3">
@@ -379,33 +411,6 @@ export default function AddProduct() {
     </>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // "use client";
 // import SubmitButton from "@/components/button/SubmitButton";
