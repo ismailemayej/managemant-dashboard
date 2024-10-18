@@ -1,15 +1,12 @@
 "use client";
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import MonthlyPage from "./MonthlyPage";
-
 import { DailyDeleveryDataTable } from "@/app/(resticted-layout)/components/online-delevery/daily-delevery-table/daily-delevery-data-table";
 import { tasks } from "@/app/(resticted-layout)/components/online-delevery/daily-delevery-table/data/tasks";
 import { columns } from "@/app/(resticted-layout)/components/online-delevery/daily-delevery-table/columns";
-
 const OnlineOrder = () => {
   return (
-    <Tabs defaultValue="delivery" className="bg-white ml-5">
+    <Tabs defaultValue="delivery" className="ml-5">
       <TabsList className="flex gap-2 w-[300px]">
         <TabsTrigger value="account">
           <button className="ml-2">Daily Delevery</button>

@@ -2,14 +2,32 @@ import React from "react";
 import { columns } from "../../../../../components/product-table/columns";
 import { tasks } from "../../../../../components/product-table/data/tasks";
 import { ProductListDataTable } from "@/app/(resticted-layout)/components/product-table/product-list-data-table";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import UiRoute from "@/components/UiRoute/UiRoute";
+import CommonButton from "@/components/button/CummonButton";
+import Title from "@/components/Title/Title";
 const AllProduct = () => {
+  const pathRoute = [
+    {
+      name: "Dashboard",
+      link: "/dashboard/super-admin",
+    },
+    {
+      name: "Customers",
+      link: "/dashboard/super-admin/product-list",
+    },
+  ];
   return (
     <div className="mx-4">
-      <Link href="/dashboard/super-admin/add-new-product">
-        <Button className="my-3">Add New Product</Button>
-      </Link>
+      <UiRoute routes={pathRoute} />
+      <Title
+        title="Total Products"
+        subtitle="Manage employees (Server side table functionalities.)"
+        right={
+          <CommonButton link="/dashboard/super-admin/add-new-product">
+            Add New Product
+          </CommonButton>
+        }
+      />
       <ProductListDataTable data={tasks} columns={columns} />
     </div>
   );

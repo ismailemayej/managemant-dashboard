@@ -1,28 +1,28 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-'use client';
+"use client";
 
-import { Icons } from '@/components/icons';
-import { useBreakpoint } from '../../../../hooks/useBreakPoints'; 
-import { useSidebar } from '../../../../hooks/useSidebar'; 
-import { cn } from '@/lib/utils';
-import { NavItem } from '../../../../types';
-import { ChevronRight } from 'lucide-react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import React, { useCallback, useMemo, useState } from 'react';
+import { Icons } from "@/components/icons";
+import { useBreakpoint } from "../../../../hooks/useBreakPoints";
+import { useSidebar } from "../../../../hooks/useSidebar";
+import { cn } from "@/lib/utils";
+import { NavItem } from "../../../../types";
+import { ChevronRight } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import React, { useCallback, useMemo, useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu';
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
-  TooltipTrigger
-} from '@/components/ui/tooltip';
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface DashboardNavProps {
   items: NavItem[];
@@ -35,7 +35,7 @@ const NavItemContent = React.memo(
     item,
     isMinimized,
     isExpanded,
-    path
+    path,
   }: {
     item: NavItem;
     isMinimized: boolean;
@@ -48,16 +48,16 @@ const NavItemContent = React.memo(
     return (
       <div
         className={cn(
-          'flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground',
-          path === item.href ? 'bg-accent' : 'transparent',
-          item.disabled && 'cursor-not-allowed opacity-80'
+          "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
+          path === item.href ? "bg-accent" : "transparent",
+          item.disabled && "cursor-not-allowed opacity-80"
         )}
       >
         <Icon className="size-5 flex-none" />
         {!isMinimized && <span className="mr-2 truncate">{item.title}</span>}
         {hasChildren && !isMinimized && (
           <ChevronRight
-            className={cn('ml-auto h-4 w-4', isExpanded && 'rotate-90')}
+            className={cn("ml-auto h-4 w-4", isExpanded && "rotate-90")}
           />
         )}
       </div>
@@ -65,21 +65,21 @@ const NavItemContent = React.memo(
   }
 );
 
-NavItemContent.displayName = 'NavItemContent';
+NavItemContent.displayName = "NavItemContent";
 
 const NavItemLink = React.memo(
   ({
     item,
     onClick,
-    children
+    children,
   }: {
     item: NavItem;
     onClick: () => void;
     children: React.ReactNode;
   }) => (
     <Link
-      href={item.disabled ? '/' : item.href || '#'}
-      className={cn('block', item.disabled && 'cursor-not-allowed opacity-80')}
+      href={item.disabled ? "/" : item.href || "#"}
+      className={cn("block", item.disabled && "cursor-not-allowed opacity-80")}
       onClick={onClick}
     >
       {children}
@@ -87,12 +87,12 @@ const NavItemLink = React.memo(
   )
 );
 
-NavItemLink.displayName = 'NavItemLink';
+NavItemLink.displayName = "NavItemLink";
 
 const NavItemButton = React.memo(
   ({
     onClick,
-    children
+    children,
   }: {
     onClick: () => void;
     children: React.ReactNode;
@@ -103,17 +103,17 @@ const NavItemButton = React.memo(
   )
 );
 
-NavItemButton.displayName = 'NavItemButton';
+NavItemButton.displayName = "NavItemButton";
 
 export function DashboardNav({
   items,
   setOpen,
-  isMobileNav = false
+  isMobileNav = false,
 }: DashboardNavProps) {
   const path = usePathname();
   const { isMinimized } = useSidebar();
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
-  const { isAboveLg } = useBreakpoint('lg');
+  const { isAboveLg } = useBreakpoint("lg");
 
   const toggleExpand = useCallback((title: string) => {
     setExpandedItems((prev) => {
@@ -205,7 +205,7 @@ export function DashboardNav({
   }
 
   return (
-    <nav className={cn('grid items-start gap-2')}>
+    <nav className={cn("grid items-start gap-2")}>
       <TooltipProvider>
         {memoizedItems.map((item) => (
           <Tooltip key={item.title}>
@@ -214,7 +214,7 @@ export function DashboardNav({
               align="center"
               side="right"
               sideOffset={8}
-              className={!isMinimized ? 'hidden' : 'inline-block'}
+              className={!isMinimized ? "hidden" : "inline-block"}
             >
               {item.title}
             </TooltipContent>
