@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // hooks/useLocalStorage.js
 import useLocalStorage from 'use-local-storage';
 
