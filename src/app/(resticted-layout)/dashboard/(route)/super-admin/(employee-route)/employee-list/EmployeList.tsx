@@ -22,7 +22,7 @@ const EmployeList = () => {
       <UiRoute routes={pathRoute} />
       <Title
         title="Total Employee"
-        subtitle="Manage employees (Server side table functionalities."
+        subtitle="Manage employees (Server side table functionalities.)"
         right={
           <CommonButton link="/dashboard/super-admin/add-new-employee">
             Add New Employee

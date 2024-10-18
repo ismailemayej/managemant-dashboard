@@ -1,3 +1,4 @@
+"use client"
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { DotsHorizontalIcon } from '@radix-ui/react-icons'
 import { Row } from '@tanstack/react-table'
@@ -10,6 +11,8 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { ReuseableEditModal } from '@/components/dialog/Dialog'
+import { useState } from 'react'
 
 // import { labels } from './data/data' 
 // import { taskSchema } from './data/schema'
@@ -23,6 +26,7 @@ export function DataTableRowActions<TData>({
 }: DataTableRowActionsProps<TData>) {
   // const task = taskSchema.parse(row.original)
 
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -35,13 +39,17 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end' className='w-[160px]'>
-        <DropdownMenuItem>Edit</DropdownMenuItem>
+
+        {/* <DropdownMenuItem>Edit</DropdownMenuItem> */}
+        
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           Delete
           <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>
+  
+
     </DropdownMenu>
   )
 }

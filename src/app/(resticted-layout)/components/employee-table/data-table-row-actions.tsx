@@ -10,7 +10,7 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Modal } from "@/components/dialog/Dialog";
+import { ReuseableEditModal } from "@/components/dialog/Dialog";
 
 // import { labels } from './data/data'
 // import { taskSchema } from './data/schema'
@@ -35,7 +35,8 @@ export function DataTableRowActions<TData>({
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
         <DropdownMenuItem>
-          <Modal button="Editt" name="Employee" body="this is edit option" />
+          {/* <Modal button="Editt" name="Employee" body="this is edit option" /> */}
+          <ReuseableEditModal />
           <DropdownMenuShortcut>⌘</DropdownMenuShortcut>
         </DropdownMenuItem>
         <DropdownMenuSeparator />

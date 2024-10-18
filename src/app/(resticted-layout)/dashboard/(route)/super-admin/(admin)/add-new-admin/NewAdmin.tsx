@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import SubmitButton from "@/components/button/SubmitButton";
 import { Input } from "@/components/ui/input";
@@ -9,7 +10,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import UiRoute from "@/components/UiRoute/UiRoute";
 import React from "react";
 import { useForm } from "react-hook-form";
 const NewAdmin = () => {
@@ -20,18 +20,8 @@ const NewAdmin = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data: any) => console.log(data);
-  const routes = [
-    { name: "Dashboard", link: "/dashboard/super-admin" },
-    { name: "Admin", link: "/dashboard/super-admin/all-admin" },
-    {
-      name: "Add New Admin",
-      link: "/dashboard/super-admin/add-new-admin",
-    },
-  ];
   return (
     <div>
-      <UiRoute routes={routes} />
-
       <h1 className="text-center text-3xl font-bold">Add New Admin</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -39,53 +29,60 @@ const NewAdmin = () => {
       >
         <Input
           type="text"
-          placeholder="Admin Name"
+          placeholder="Your Name"
           defaultValue=""
-          {...register("name", { required: true })}
+          {...register("example")}
         />
-        {errors.name && <span>This field is required</span>}
+        {errors.exampleRequired && <span>This field is required</span>}
         <Input
           type="text"
-          placeholder="Admin ID"
+          placeholder="Your Name"
           defaultValue=""
-          {...register("id", {
-            required: true,
-            pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-          })}
+          {...register("example")}
         />
-        {errors.id && (
-          <span>This field is required and must be a valid email</span>
-        )}
+        {errors.exampleRequired && <span>This field is required</span>}
         <Input
           type="text"
-          placeholder="Admin Email"
+          placeholder="Your Name"
           defaultValue=""
-          {...register("email", {
-            required: true,
-            pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-          })}
+          {...register("example")}
         />
-        {errors.email && (
-          <span>This field is required and must be a valid email</span>
-        )}
+        {errors.exampleRequired && <span>This field is required</span>}
         <Input
-          type="password"
-          placeholder="Admin Password"
+          type="text"
+          placeholder="Your Name"
           defaultValue=""
-          {...register("password", { required: true })}
+          {...register("example")}
         />
-        {errors.password && <span>This field is required</span>}
-        <Select onValueChange={(value) => setValue("role", value)}>
+        {errors.exampleRequired && <span>This field is required</span>}
+        <Input
+          type="text"
+          placeholder="Your Name"
+          defaultValue=""
+          {...register("example")}
+        />
+        {errors.exampleRequired && <span>This field is required</span>}
+        <Input
+          type="text"
+          placeholder="Your Name"
+          defaultValue=""
+          {...register("example")}
+        />
+        {errors.exampleRequired && <span>This field is required</span>}
+        <Select onValueChange={(value) => setValue("gender", value)}>
           <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Select Role" />
+            <SelectValue placeholder="Select Gender" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectItem value="admin">Admin</SelectItem>
-              <SelectItem value="employee">Employee</SelectItem>
+              <SelectItem value="male">Male</SelectItem>
+              <SelectItem value="female">Female</SelectItem>
+              <SelectItem value="non-binary">Non-binary</SelectItem>
+              <SelectItem value="transgender">Transgender</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
+
         <SubmitButton className="w-full">Add Admin</SubmitButton>
       </form>
     </div>
