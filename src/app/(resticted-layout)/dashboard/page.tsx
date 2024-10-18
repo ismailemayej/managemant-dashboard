@@ -5,7 +5,7 @@ import { ChartTable } from "./(component)/Chart";
 
 const DashboardPage = () => {
   return (
-    <div>
+    <div className="lg:mx-3 mx-2">
       <Dashboard />
       <ChartTable />
     </div>

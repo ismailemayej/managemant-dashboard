@@ -9,10 +9,12 @@ const MonthlyPage = () => {
     <div className="mx-3">
       {/* Cart */}
       <div className="flex gap-2 text-xl">
-        <span className="font-semibold">Date:</span>20-10-2024
+        <span className="font-semibold">Date:</span>
+        {new Date().toLocaleDateString()}
       </div>
       <div className="grid lg:grid-cols-4 justify-center grid-cols-2 gap-2">
         <Card text="+3302" title="Total Completed Order" />
+        <Card text="- 302" title="Total Cencel Order" />
         <Card text="+8302 TK" title="Total Amount" />
       </div>
       <MonthlyDeleveryDataTable data={tasks} columns={columns} />

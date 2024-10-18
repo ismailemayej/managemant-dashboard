@@ -6,7 +6,7 @@ import { PencilOff, Trash2 } from "lucide-react";
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
 }
-export function DataTableRowActions<TData>({
+export function ProductDataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
   // const task = taskSchema.parse(row.original)

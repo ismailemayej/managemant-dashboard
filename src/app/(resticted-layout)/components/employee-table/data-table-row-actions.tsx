@@ -7,7 +7,7 @@ import ManageEmploye from "../../dashboard/(route)/super-admin/(employee-route)/
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
 }
-export function DataTableRowActions<TData>({
+export function EmployeeDataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
   return (

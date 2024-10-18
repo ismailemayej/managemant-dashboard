@@ -1,8 +1,10 @@
 import React from "react";
-import { columns } from "@/app/(resticted-layout)/components/cutomer-list-table/columns";
+
 import { CustomerListDataTable } from "@/app/(resticted-layout)/components/customer-table/customer-list-data-table";
-import { tasks } from "@/app/(resticted-layout)/components/cutomer-list-table/data/tasks";
+
 import CustomerList from "./CustomerList";
+import { tasks } from "@/app/(resticted-layout)/components/customer-table/data/tasks";
+import { columns } from "@/app/(resticted-layout)/components/customer-table/columns";
 
 const page = async () => {
   // const customer = await Get("name");

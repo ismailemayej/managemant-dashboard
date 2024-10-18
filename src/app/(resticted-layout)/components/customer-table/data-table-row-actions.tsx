@@ -11,7 +11,7 @@ import ManageCustomer from "../../dashboard/(route)/super-admin/(customer-route)
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
 }
-export function DataTableRowActions<TData>({
+export function CustomerDataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
   // const task = taskSchema.parse(row.original)

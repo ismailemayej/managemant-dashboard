@@ -112,7 +112,6 @@ const chartData = [
   { date: "2024-06-29", desktop: 103, mobile: 160 },
   { date: "2024-06-30", desktop: 446, mobile: 400 },
 ];
-
 const chartConfig = {
   views: {
     label: "Page Views",

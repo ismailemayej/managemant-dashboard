@@ -1,10 +1,12 @@
 import React from "react";
-import { columns } from "../../../../../components/product-table/columns";
+
 import { tasks } from "../../../../../components/product-table/data/tasks";
-import { CustomerListDataTable } from "@/app/(resticted-layout)/components/customer-table/customer-list-data-table";
+
 import UiRoute from "@/components/UiRoute/UiRoute";
 import CommonButton from "@/components/button/CummonButton";
 import Title from "@/components/Title/Title";
+import { columns } from "@/app/(resticted-layout)/components/customer-table/columns";
+import { CustomerListDataTable } from "@/app/(resticted-layout)/components/customer-table/customer-list-data-table";
 const CustomerList = () => {
   const pathRoute = [
     {
@@ -32,5 +34,4 @@ const CustomerList = () => {
     </div>
   );
 };
-
 export default CustomerList;
