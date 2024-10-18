@@ -8,13 +8,16 @@ import { Textarea } from "@/components/ui/textarea";
 
 import React from "react";
 import { useForm } from "react-hook-form";
+import { Post } from "@/components/ApiHandle";
 const NewProduct = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = async (data: any) => {
+    await Post("data", "name");
+  };
   const routes = [
     { name: "Dashboard", link: "/dashboard/super-admin" },
     { name: "Products", link: "/dashboard/super-admin/product-list" },

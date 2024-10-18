@@ -1,7 +1,7 @@
 import React from "react";
 import NewAdmin from "./NewAdmin";
 
-const page = () => {
+const page = async () => {
   return (
     <div>
       <NewAdmin />

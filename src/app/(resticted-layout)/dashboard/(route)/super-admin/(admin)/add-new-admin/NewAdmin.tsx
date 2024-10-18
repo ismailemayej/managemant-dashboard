@@ -1,4 +1,5 @@
 "use client";
+import { Post } from "@/components/ApiHandle";
 import SubmitButton from "@/components/button/SubmitButton";
 import { Input } from "@/components/ui/input";
 import {
@@ -19,7 +20,10 @@ const NewAdmin = () => {
     setValue,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = async (data: any) => {
+    await Post("data", "name");
+    console.log(data);
+  };
   const routes = [
     { name: "Dashboard", link: "/dashboard/super-admin" },
     { name: "Admin", link: "/dashboard/super-admin/all-admin" },
