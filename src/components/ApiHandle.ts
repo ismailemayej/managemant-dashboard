@@ -33,10 +33,8 @@ export const Update = async (data: any, name: any, id: any) => {
   if (!res.ok) {
     throw new Error("Network response was not ok");
   }
-
   return res.json();
 };
-
 //Delete mehtod-----------------------------------------------
 export const Delete = async (name: any, id: any) => {
   const res = await fetch(`${process.env.BASE_URL}/${name}/${id}`, {
