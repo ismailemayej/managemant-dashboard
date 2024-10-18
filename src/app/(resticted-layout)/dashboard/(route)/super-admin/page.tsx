@@ -1,7 +1,12 @@
 import React from "react";
+import Dashboard from "../../Dashboard";
 
 const page = () => {
-  return <div>super admin dashboard</div>;
+  return (
+    <div>
+      <Dashboard />
+    </div>
+  );
 };
 
 export default page;

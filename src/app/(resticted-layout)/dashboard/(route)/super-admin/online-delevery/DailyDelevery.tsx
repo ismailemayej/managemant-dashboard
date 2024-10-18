@@ -7,7 +7,7 @@ const DailyDelevery = () => {
   return (
     <div className="mx-3">
       <div className="grid lg:grid-cols-4 justify-center grid-cols-2 gap-4">
-        <div className="lg:w-72 w-64 h-32 rounded-xl border pb-6 my-2">
+        <div className="lg:w-72 w-64 h-32 rounded-xl bg-green-500 border pb-6 bg my-2">
           <div className="m-4">
             <h1 className=" text-lg">Order</h1>
             <h1 className="text-4xl font-bold mt-2">+6302</h1>
