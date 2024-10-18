@@ -1,5 +1,5 @@
-"use client"
-import * as React from 'react'
+"use client";
+import * as React from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -13,7 +13,7 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from '@tanstack/react-table'
+} from "@tanstack/react-table";
 
 import {
   Table,
@@ -22,27 +22,27 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
+} from "@/components/ui/table";
 
-import { DataTablePagination } from '../product-table/data-table-pagination'
-import { DataTableToolbar } from '../product-table/data-table-toolbar'
+import { DataTablePagination } from "../product-table/data-table-pagination";
+import { DataTableToolbar } from "../product-table/data-table-toolbar";
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+interface EmployDataTableProps<TData, TValue> {
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
 }
 
 export function EmployeeListDataTable<TData, TValue>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) {
-  const [rowSelection, setRowSelection] = React.useState({})
+}: EmployDataTableProps<TData, TValue>) {
+  const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({})
+    React.useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
-  )
-  const [sorting, setSorting] = React.useState<SortingState>([])
+  );
+  const [sorting, setSorting] = React.useState<SortingState>([]);
 
   const table = useReactTable({
     data,
@@ -64,12 +64,11 @@ export function EmployeeListDataTable<TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
-  })
-
+  });
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <DataTableToolbar table={table} />
-      <div className='rounded-md border'>
+      <div className="rounded-md border">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -84,7 +83,7 @@ export function EmployeeListDataTable<TData, TValue>({
                             header.getContext()
                           )}
                     </TableHead>
-                  )
+                  );
                 })}
               </TableRow>
             ))}
@@ -94,7 +93,7 @@ export function EmployeeListDataTable<TData, TValue>({
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  data-state={row.getIsSelected() && 'selected'}
+                  data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
@@ -110,7 +109,7 @@ export function EmployeeListDataTable<TData, TValue>({
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className='h-24 text-center'
+                  className="h-24 text-center"
                 >
                   No results.
                 </TableCell>
@@ -121,5 +120,5 @@ export function EmployeeListDataTable<TData, TValue>({
       </div>
       <DataTablePagination table={table} />
     </div>
-  )
+  );
 }
