@@ -2,29 +2,15 @@ import React from "react";
 import { DailyDeleveryDataTable } from "@/app/(resticted-layout)/components/online-delevery/daily-delevery-table/daily-delevery-data-table";
 import { tasks } from "@/app/(resticted-layout)/components/online-delevery/daily-delevery-table/data/tasks";
 import { columns } from "@/app/(resticted-layout)/components/online-delevery/daily-delevery-table/columns";
+import Card from "@/components/card/Card";
 
 const DailyDelevery = () => {
   return (
     <div className="mx-3">
       <div className="grid lg:grid-cols-4 justify-center grid-cols-2 gap-4">
-        <div className="lg:w-72 w-64 h-32 rounded-xl bg-green-500 border pb-6 bg my-2">
-          <div className="m-4">
-            <h1 className=" text-lg">Order</h1>
-            <h1 className="text-4xl font-bold mt-2">+6302</h1>
-          </div>
-        </div>
-        <div className="lg:w-72 w-64 h-32 rounded-xl border pb-6 my-2">
-          <div className="m-4">
-            <h1 className=" text-lg text-black">Dispatched Order</h1>
-            <h1 className="text-4xl font-bold mt-2">+8302</h1>
-          </div>
-        </div>
-        <div className="lg:w-72 w-64 h-32 rounded-xl border pb-6  lg:my-2">
-          <div className="m-4">
-            <h1 className=" text-lg ">Delivered Order</h1>
-            <h1 className="text-4xl font-bold mt-2">+320</h1>
-          </div>
-        </div>
+        <Card title="Order" text="+52369" />
+        <Card title="Dispatched Order" text="+4369" />
+        <Card title="Delivered Order" text="+369" />
       </div>
       <DailyDeleveryDataTable columns={columns} data={tasks} />
     </div>

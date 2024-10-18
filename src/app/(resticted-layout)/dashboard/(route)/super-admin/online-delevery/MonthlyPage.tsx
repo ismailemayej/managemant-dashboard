@@ -2,6 +2,7 @@ import React from "react";
 import { MonthlyDeleveryDataTable } from "@/app/(resticted-layout)/components/online-delevery/monthly-delevery-table/monthly-delevery-data-table";
 import { tasks } from "@/app/(resticted-layout)/components/online-delevery/monthly-delevery-table/data/tasks";
 import { columns } from "@/app/(resticted-layout)/components/online-delevery/monthly-delevery-table/columns";
+import Card from "@/components/card/Card";
 
 const MonthlyPage = () => {
   return (
@@ -11,18 +12,8 @@ const MonthlyPage = () => {
         <span className="font-semibold">Date:</span>20-10-2024
       </div>
       <div className="grid lg:grid-cols-4 justify-center grid-cols-2 gap-2">
-        <div className="lg:w-72 w-64 h-32 rounded-xl bg-slate-100 border pb-6 my-2">
-          <div className="m-4">
-            <h1 className=" text-lg ">Total Completed Order</h1>
-            <h1 className="text-4xl font-bold mt-2">+3302</h1>
-          </div>
-        </div>
-        <div className="lg:w-72 w-64 h-32 rounded-xl bg-slate-100 border pb-6 my-2">
-          <div className="m-4">
-            <h1 className=" text-lg ">Total Amount</h1>
-            <h1 className="text-4xl font-bold mt-2">+8302 TK</h1>
-          </div>
-        </div>
+        <Card text="+3302" title="Total Completed Order" />
+        <Card text="+8302 TK" title="Total Amount" />
       </div>
       <MonthlyDeleveryDataTable data={tasks} columns={columns} />
     </div>
