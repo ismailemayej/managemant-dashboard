@@ -1,7 +1,7 @@
 import React from "react";
 import AllAdmin from "./AllAdmin";
 import { faker } from "@faker-js/faker";
-import { Get } from "@/components/ApiHandle";
+// import { Get } from "@/components/ApiHandle";
 const page = async () => {
   // cons admins = await Get("name")
   const admins = Array.from({ length: 10 }, (_, index) => ({

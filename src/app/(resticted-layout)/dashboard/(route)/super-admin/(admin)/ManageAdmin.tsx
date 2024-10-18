@@ -20,19 +20,10 @@ const ManageAdmin = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data: any) => console.log(data);
-  const routes = [
-    { name: "Dashboard", link: "/dashboard/super-admin" },
-    { name: "Admin", link: "/dashboard/super-admin/all-admin" },
-    {
-      name: "Add New Admin",
-      link: "/dashboard/super-admin/add-new-admin",
-    },
-  ];
+
   return (
     <div>
-      <UiRoute routes={routes} />
-
-      <h1 className="text-center text-3xl font-bold">Add New Admin</h1>
+      <h1 className="text-center text-3xl font-bold">Manage Admin</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="grid lg:grid-cols-2 grid-cols-1 lg:gap-8 gap-4 mx-5 lg:mx-10 border rounded-lg p-6 "
@@ -86,7 +77,7 @@ const ManageAdmin = () => {
             </SelectGroup>
           </SelectContent>
         </Select>
-        <SubmitButton className="w-full">Add Admin</SubmitButton>
+        <SubmitButton className="w-full">Edit Admin</SubmitButton>
       </form>
     </div>
   );

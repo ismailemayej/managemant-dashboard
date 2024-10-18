@@ -68,7 +68,7 @@ const ManageProduct = () => {
         {errors.rating && (
           <span>This field is required and must be between 0 and 5</span>
         )}
-        <SubmitButton className="w-full">Add Product</SubmitButton>
+        <SubmitButton className="w-full">Edit Product</SubmitButton>
       </form>
     </div>
   );

@@ -10,7 +10,7 @@ import {
   SelectContent,
   SelectGroup,
 } from "@/components/ui/select";
-import UiRoute from "@/components/UiRoute/UiRoute";
+
 import React from "react";
 import { useForm } from "react-hook-form";
 const ManageEmploye = () => {
@@ -89,7 +89,7 @@ const ManageEmploye = () => {
           </SelectContent>
         </Select>
 
-        <SubmitButton className="w-full">Add Employee</SubmitButton>
+        <SubmitButton className="w-full">Edit Employee</SubmitButton>
       </form>
     </div>
   );

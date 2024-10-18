@@ -4,6 +4,7 @@ import UiRoute from "@/components/UiRoute/UiRoute";
 import CommonButton from "@/components/button/CummonButton";
 import Title from "@/components/Title/Title";
 import { Modal } from "@/components/dialog/Dialog";
+import ManageAdmin from "../ManageAdmin";
 
 interface Admin {
   id: number;
@@ -52,9 +53,9 @@ const AllAdmin = ({ admins }: { admins: Admin[] }) => {
             <p className="text-gray-600">{admin.mobile}</p>
             <div className="w-full absolute bottom-1">
               <Modal
-                button="View Details"
-                name="User Information"
-                body="user Information ,user Details"
+                button="Manage"
+                name="Admin Information"
+                body={<ManageAdmin />}
               />
             </div>
           </div>

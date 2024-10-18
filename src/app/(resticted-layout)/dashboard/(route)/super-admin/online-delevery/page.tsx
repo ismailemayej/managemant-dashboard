@@ -3,7 +3,7 @@ import OnlineOrder from "./OnlineDeliveryTabs";
 import { Get } from "@/components/ApiHandle";
 
 const page = async () => {
-  const DelivaryData = await Get("name");
+  // const DelivaryData = await Get("name");
   return (
     <div>
       <OnlineOrder />

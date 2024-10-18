@@ -16,7 +16,7 @@ const NewProduct = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = async (data: any) => {
-    await Post("data", "name");
+    //  await Post("data", "name");
   };
   const routes = [
     { name: "Dashboard", link: "/dashboard/super-admin" },

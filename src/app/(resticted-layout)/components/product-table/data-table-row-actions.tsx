@@ -16,7 +16,7 @@ export function DataTableRowActions<TData>({
         button={
           <PencilOff className="text-red-500 p-1 border-r hover:bg-slate-300" />
         }
-        name="Employee"
+        name="Products"
         body={<ManageProduct />}
       />
       <Trash2 className="text-red-500 p-1" />

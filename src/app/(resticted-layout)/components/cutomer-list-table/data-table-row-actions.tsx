@@ -1,15 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { DotsHorizontalIcon } from "@radix-ui/react-icons";
+
 import { Row } from "@tanstack/react-table";
-import { Button } from "../custom/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
 import { Modal2 } from "@/components/dialog/Dialog2";
 import { PencilOff, Trash2 } from "lucide-react";
 import ManageCustomer from "../../dashboard/(route)/super-admin/(customer-route)/ManageCustomer";
@@ -30,7 +22,7 @@ export function DataTableRowActions<TData>({
         button={
           <PencilOff className="text-red-500 p-1 border-r hover:bg-slate-300" />
         }
-        name="Employee"
+        name="Customer"
         body={<ManageCustomer />}
       />
       <Trash2 className="text-red-500 p-1" />
