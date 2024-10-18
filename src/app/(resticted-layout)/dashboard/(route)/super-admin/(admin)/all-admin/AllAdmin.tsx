@@ -3,8 +3,9 @@ import React from "react";
 import UiRoute from "@/components/UiRoute/UiRoute";
 import CommonButton from "@/components/button/CummonButton";
 import Title from "@/components/Title/Title";
-import { Modal } from "@/components/dialog/Dialog";
+
 import ManageAdmin from "../ManageAdmin";
+import { Modal } from "@/components/dialog/Dialog";
 
 interface Admin {
   id: number;

@@ -1,7 +1,10 @@
+/* eslint-disable react/no-unescaped-entities */
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,

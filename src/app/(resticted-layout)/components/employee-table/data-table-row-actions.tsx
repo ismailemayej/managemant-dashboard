@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { DotsHorizontalIcon } from "@radix-ui/react-icons";
-import { Row } from "@tanstack/react-table";
 
+import { Row } from "@tanstack/react-table";
 import { PencilOff, Trash2 } from "lucide-react";
 import { Modal2 } from "@/components/dialog/Dialog2";
 import ManageEmploye from "../../dashboard/(route)/super-admin/(employee-route)/ManageEmployee";

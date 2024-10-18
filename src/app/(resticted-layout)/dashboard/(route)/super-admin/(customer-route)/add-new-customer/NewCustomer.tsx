@@ -22,7 +22,7 @@ const NewCustomer = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = async (data: any) => {
-    await Post("data", "name");
+    // await Post("data", "name");
     console.log(data);
   };
   const routes = [
