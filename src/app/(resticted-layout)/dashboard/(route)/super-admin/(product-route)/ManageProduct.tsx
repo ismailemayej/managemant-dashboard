@@ -3,7 +3,6 @@
 import SubmitButton from "@/components/button/SubmitButton";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import UiRoute from "@/components/UiRoute/UiRoute";
 import { Textarea } from "@/components/ui/textarea";
 
 import React from "react";

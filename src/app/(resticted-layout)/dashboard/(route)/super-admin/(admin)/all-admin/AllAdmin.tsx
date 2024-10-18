@@ -1,11 +1,9 @@
 import React from "react";
 import { faker } from "@faker-js/faker";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import UiRoute from "@/components/UiRoute/UiRoute";
 import CommonButton from "@/components/button/CummonButton";
 import Title from "@/components/Title/Title";
-import { Modal } from "@/components/dialog/Dialog";
+import { Modal2 } from "@/components/dialog/Dialog2"; 
 
 const AllAdmin = () => {
   const pathRoute = [
@@ -52,7 +50,7 @@ const AllAdmin = () => {
             <p className="text-gray-600">{user.email}</p>
             <p className="text-gray-600">{user.mobile}</p>
             <div className="w-full absolute bottom-1">
-              <Modal
+              <Modal2
                 button="View Details"
                 name="User Information"
                 body="user Information ,user Details"

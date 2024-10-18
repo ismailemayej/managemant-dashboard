@@ -10,7 +10,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import UiRoute from "@/components/UiRoute/UiRoute";
 import React from "react";
 import { useForm } from "react-hook-form";
 const ManageCustomer = () => {
