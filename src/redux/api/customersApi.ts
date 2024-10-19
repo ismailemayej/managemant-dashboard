@@ -3,7 +3,6 @@ import { tagTypes } from "../tag-types";
 import { IMeta } from "../../../types";
 
 const PATH = "/customer";
-
 export const customersApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     createCustomer: build.mutation({

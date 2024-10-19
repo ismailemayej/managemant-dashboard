@@ -35,7 +35,7 @@ import {
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
-export default function NewAdmin() {
+export default function AdminUpdateModal() {
   const [userRole, setUserRole] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [value, setValue] = useState();
@@ -76,10 +76,10 @@ export default function NewAdmin() {
 
     console.log("🚀 ~ onSubmit ~ data:", data);
     try {
-      // const res = await createProduct(data).unwrap();
+      // const res = await UpdateProduct(data).unwrap();
       // console.log("🚀 ~ onSubmit ~ res:", res);
     } catch (error) {
-      console.error("Failed to create product:", error);
+      console.error("Failed to Update product:", error);
     }
   };
 
@@ -135,19 +135,13 @@ export default function NewAdmin() {
           <main className="grid flex-1 items-start gap-4 p-4 md:gap-8 sm:gap-4 sm:py-4">
             <div className="mx-auto grid max-w-[75rem] flex-1 auto-rows-max gap-4">
               <div className="flex items-center gap-4">
-                <Link href={`/dashboard/${userRole}/product-manage`}>
-                  <Button variant="outline" size="icon" className="h-7 w-16">
-                    <ChevronLeft className="h-4 w-4" />
-                    <span className="">Back</span>
-                  </Button>
-                </Link>
                 <h1 className="flex-1 shrink-0 whitespace-nowrap text-xl font-semibold tracking-tight sm:grow-0">
-                  Create Admin
+                  Update Admin
                 </h1>
               </div>
               <div className="items-center gap-2 md:ml-auto md:flex">
                 <Button type="submit" size="sm" className="text-lg">
-                  Create Admin
+                  Update Admin
                 </Button>
               </div>
               <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
