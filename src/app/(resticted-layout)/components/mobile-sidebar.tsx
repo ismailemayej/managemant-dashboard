@@ -10,11 +10,20 @@ import { useState } from 'react';
 // import { Playlist } from "../data/playlists";
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
-  // playlists: Playlist[];
+  role: string;
 }
 
-export function MobileSidebar({ className }: SidebarProps) {
+export function MobileSidebar({ className , role}: SidebarProps) {
   const [open, setOpen] = useState(false);
+
+  
+    // Filter the nav items based on the user's role
+    const filteredNavItems = navItems.filter((item) => {
+      if (item?.roles && !item.roles?.includes(role)) {
+        return false; // If roles are defined and role is not in the list, don't show the item
+      }
+      return true;
+    });
   return (
     <>
       <Sheet open={open} onOpenChange={setOpen}>
@@ -28,8 +37,9 @@ export function MobileSidebar({ className }: SidebarProps) {
                 Overview
               </h2>
               <div className="space-y-1">
+              
                 <DashboardNav
-                  items={navItems}
+                  items={filteredNavItems}
                   isMobileNav={true}
                   setOpen={setOpen}
                 />

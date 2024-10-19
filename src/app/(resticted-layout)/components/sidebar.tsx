@@ -8,15 +8,22 @@ import Link from 'next/link';
 
 type SidebarProps = {
   className?: string;
+  role: string;  // Add role as a prop
 };
-
-export default function Sidebar({ className }: SidebarProps) {
+export default function Sidebar({ className, role  }: SidebarProps) {
   const { isMinimized, toggle } = useSidebar();
 
   const handleToggle = () => {
     toggle();
   };
 
+    // Filter the nav items based on the user's role
+    const filteredNavItems = navItems.filter((item) => {
+      if (item?.roles && !item.roles?.includes(role)) {
+        return false; // If roles are defined and role is not in the list, don't show the item
+      }
+      return true;
+    });
   return (
     <aside
       className={cn(
@@ -54,7 +61,7 @@ export default function Sidebar({ className }: SidebarProps) {
       <div className="space-y-4 py-4">
         <div className="px-3 py-2">
           <div className="mt-3 space-y-1">
-            <DashboardNav items={navItems} />
+          <DashboardNav items={filteredNavItems} />
           </div>
         </div>
       </div>
