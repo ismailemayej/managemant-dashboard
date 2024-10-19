@@ -72,7 +72,8 @@ export function LoginForm() {
         console.log("🚀 ~ onSubmit ~ userInfo:", userInfo);
 
         if (userInfo?.role === "admin" || userInfo?.role === "superadmin") {
-          router.push(`/dashboard/${userInfo?.role}`);
+          router.push(`/login`);
+          // router.push(`/dashboard/${userInfo?.role}`);
         } else {
           router.push("/");
         }

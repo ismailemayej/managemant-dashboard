@@ -1,5 +1,4 @@
 import { z } from "zod";
-
 const TCost = z.object({
   materialCost: z.number(), // Use z.number() to specify that it's a number
   labourCost: z.number(), // Similarly, use z.number() for other cost fields

@@ -26,9 +26,9 @@ const NewCustomer = () => {
     console.log(data);
   };
   const routes = [
-    { name: "Dashboard", link: "/dashboard/super-admin" },
-    { name: "Customers", link: "/dashboard/super-admin/customer-list" },
-    { name: "add Customers", link: "/dashboard/super-admin/add-new-customer" },
+    { name: "Dashboard", link: "/dashboard/superadmin" },
+    { name: "Customers", link: "/dashboard/superadmin/customer-list" },
+    { name: "add Customers", link: "/dashboard/superadmin/add-new-customer" },
   ];
   return (
     <div>

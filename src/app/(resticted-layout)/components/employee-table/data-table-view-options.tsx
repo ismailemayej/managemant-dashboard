@@ -2,7 +2,7 @@ import { Table } from "@tanstack/react-table";
 
 import { Modal2 } from "@/components/dialog/Dialog2";
 import { PencilOff, Trash2 } from "lucide-react";
-import ManageEmploye from "../../dashboard/(route)/super-admin/(employee-route)/ManageEmployee";
+import ManageEmploye from "../../dashboard/(route)/superadmin/(employee-route)/ManageEmployee";
 
 interface DataTableViewOptionsProps<TData> {
   table: Table<TData>;

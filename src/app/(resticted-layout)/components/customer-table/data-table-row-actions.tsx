@@ -4,7 +4,7 @@ import { Row } from "@tanstack/react-table";
 
 import { Modal2 } from "@/components/dialog/Dialog2";
 import { PencilOff, Trash2 } from "lucide-react";
-import ManageCustomer from "../../dashboard/(route)/super-admin/(customer-route)/ManageCustomer";
+import ManageCustomer from "../../dashboard/(route)/superadmin/(customer-route)/ManageCustomer";
 // import { labels } from './data/data'
 // import { taskSchema } from './data/schema'
 interface DataTableRowActionsProps<TData> {

@@ -25,11 +25,11 @@ const NewAdmin = () => {
     console.log(data);
   };
   const routes = [
-    { name: "Dashboard", link: "/dashboard/super-admin" },
-    { name: "Admin", link: "/dashboard/super-admin/all-admin" },
+    { name: "Dashboard", link: "/dashboard/superadmin" },
+    { name: "Admin", link: "/dashboard/superadmin/all-admin" },
     {
       name: "Add New Admin",
-      link: "/dashboard/super-admin/add-new-admin",
+      link: "/dashboard/superadmin/add-new-admin",
     },
   ];
   return (
