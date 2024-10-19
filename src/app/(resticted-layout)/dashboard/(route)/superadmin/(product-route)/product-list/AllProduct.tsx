@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { columns } from "../../../../../components/product-table/columns";
 import { ProductListDataTable } from "@/app/(resticted-layout)/components/product-table/product-list-data-table";
 import UiRoute from "@/components/UiRoute/UiRoute";
@@ -8,7 +8,6 @@ import { useGetAllProductQuery } from "@/redux/api/productsApi";
 
 const AllProduct = () => {
   const { data: products, isLoading, error } = useGetAllProductQuery({});
- 
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -17,7 +16,6 @@ const AllProduct = () => {
   if (error) {
     return <div>Error loading products</div>;
   }
-
 
   const pathRoute = [
     {
@@ -41,7 +39,7 @@ const AllProduct = () => {
           </CommonButton>
         }
       />
-      <ProductListDataTable  data={products?.products || []} columns={columns} />
+      <ProductListDataTable data={products?.products || []} columns={columns} />
     </div>
   );
 };
