@@ -16,16 +16,16 @@ export function Modal2({
   body: React.ReactNode;
 }) {
   return (
-    <ScrollArea className="rounded-md border">
-      <Dialog>
-        <DialogTrigger asChild>{button}</DialogTrigger>
-        <DialogContent className="sm:max-w-[800px] lg:max-w-[1200px] lg:my-3">
+    <Dialog>
+      <DialogTrigger asChild>{button}</DialogTrigger>
+      <DialogContent className="sm:max-w-[800px] lg:max-w-[1200px] lg:my-3">
+        <ScrollArea className="rounded-md border">
           <DialogHeader>
             <DialogTitle>{name}</DialogTitle>
           </DialogHeader>
           {body}
-        </DialogContent>
-      </Dialog>
-    </ScrollArea>
+        </ScrollArea>
+      </DialogContent>
+    </Dialog>
   );
 }

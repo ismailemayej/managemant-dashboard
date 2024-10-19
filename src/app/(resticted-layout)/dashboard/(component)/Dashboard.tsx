@@ -1,6 +1,5 @@
 import Card from "@/components/card/Card";
 import React from "react";
-
 const Dashboard = () => {
   return (
     <div className=" lg:my-2">
