@@ -130,19 +130,19 @@ export const navItems: NavItem[] = [
   },
   {
     title: "Employee List",
-    href: "/dashboard/super-admin/employee-list",
+    href: "/dashboard/superadmin/employee-list",
     icon: "user",
     label: "employee",
   },
   {
     title: "Product List",
-    href: "/dashboard/super-admin/product-list",
+    href: "/dashboard/superadmin/product-list",
     icon: "product",
     label: "product",
   },
   {
     title: "Online Delivery",
-    href: "/dashboard/super-admin/online-delevery",
+    href: "/dashboard/superadmin/online-delevery",
     icon: "product",
     label: "product",
   },
@@ -167,13 +167,13 @@ export const navItems: NavItem[] = [
   },
   {
     title: "Admin",
-    href: "/dashboard/super-admin/all-admin",
+    href: "/dashboard/superadmin/all-admin",
     icon: "kanban",
     label: "kanban",
   },
   {
     title: "Customer List",
-    href: "/dashboard/super-admin/customer-list",
+    href: "/dashboard/superadmin/customer-list",
     icon: "user2",
     label: "kanban",
   },

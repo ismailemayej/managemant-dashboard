@@ -22,11 +22,11 @@ const AllProduct = () => {
   const pathRoute = [
     {
       name: "Dashboard",
-      link: "/dashboard/super-admin",
+      link: "/dashboard/superadmin",
     },
     {
       name: "Customers",
-      link: "/dashboard/super-admin/product-list",
+      link: "/dashboard/superadmin/product-list",
     },
   ];
   return (
@@ -36,7 +36,7 @@ const AllProduct = () => {
         title="Total Products"
         subtitle="Manage employees (Server side table functionalities.)"
         right={
-          <CommonButton link="/dashboard/super-admin/add-new-product">
+          <CommonButton link="/dashboard/superadmin/add-new-product">
             Add New Product
           </CommonButton>
         }

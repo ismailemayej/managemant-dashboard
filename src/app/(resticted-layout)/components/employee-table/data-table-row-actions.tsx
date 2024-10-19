@@ -3,7 +3,7 @@
 import { Row } from "@tanstack/react-table";
 import { PencilOff, Trash2 } from "lucide-react";
 import { Modal2 } from "@/components/dialog/Dialog2";
-import ManageEmploye from "../../dashboard/(route)/super-admin/(employee-route)/ManageEmployee";
+import ManageEmploye from "../../dashboard/(route)/superadmin/(employee-route)/ManageEmployee";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;

@@ -5,16 +5,15 @@ import SubmitButton from "@/components/button/SubmitButton";
 import { Input } from "@/components/ui/input";
 import {
   Select,
-  SelectTrigger,
-  SelectItem,
-  SelectValue,
   SelectContent,
   SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
-import UiRoute from "@/components/UiRoute/UiRoute";
 import React from "react";
 import { useForm } from "react-hook-form";
-const NewEmploye = () => {
+const NewAdmin = () => {
   const {
     register,
     handleSubmit,
@@ -22,72 +21,66 @@ const NewEmploye = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = async (data: any) => {
-    // await Post("data", "name");
+    await Post("data", "name");
     console.log(data);
   };
   const routes = [
-    { name: "Dashboard", link: "/dashboard/super-admin" },
-    { name: "Employee", link: "/dashboard/super-admin/employee-list" },
+    { name: "Dashboard", link: "/dashboard/superadmin" },
+    { name: "Admin", link: "/dashboard/superadmin/all-admin" },
     {
-      name: "add New Employee",
-      link: "/dashboard/super-admin/add-new-employee",
+      name: "Add New Admin",
+      link: "/dashboard/superadmin/add-new-admin",
     },
   ];
   return (
     <div>
-      <UiRoute routes={routes} />
-      <h1 className="text-center text-3xl font-bold">Add New Employee</h1>
+      <h1 className="text-center text-3xl font-bold">Add New Admin</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="grid lg:grid-cols-2 grid-cols-1 lg:gap-8 gap-4 mx-5 lg:mx-10 border rounded-lg p-6 "
       >
         <Input
           type="text"
-          placeholder="Employee Name"
+          placeholder="Your Name"
           defaultValue=""
-          {...register("name", { required: true })}
+          {...register("example")}
         />
-        {errors.name && <span>This field is required</span>}
+        {errors.exampleRequired && <span>This field is required</span>}
         <Input
           type="text"
-          placeholder="Designation"
+          placeholder="Your Name"
           defaultValue=""
-          {...register("designation", { required: true })}
+          {...register("example")}
         />
-        {errors.designation && <span>This field is required</span>}
+        {errors.exampleRequired && <span>This field is required</span>}
         <Input
           type="text"
-          placeholder="Phone Number"
+          placeholder="Your Name"
           defaultValue=""
-          {...register("phone", { required: true })}
+          {...register("example")}
         />
-        {errors.phone && <span>This field is required</span>}
-        <Input
-          type="email"
-          placeholder="E-mail"
-          defaultValue=""
-          {...register("email", {
-            required: true,
-            pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-          })}
-        />
-        {errors.email && (
-          <span>This field is required and must be a valid email</span>
-        )}
+        {errors.exampleRequired && <span>This field is required</span>}
         <Input
           type="text"
-          placeholder="Address"
+          placeholder="Your Name"
           defaultValue=""
-          {...register("address", { required: true })}
+          {...register("example")}
         />
-        {errors.address && <span>This field is required</span>}
+        {errors.exampleRequired && <span>This field is required</span>}
         <Input
-          type="number"
-          placeholder="Salary"
+          type="text"
+          placeholder="Your Name"
           defaultValue=""
-          {...register("salary", { required: true, valueAsNumber: true })}
+          {...register("example")}
         />
-        {errors.salary && <span>This field is required</span>}
+        {errors.exampleRequired && <span>This field is required</span>}
+        <Input
+          type="text"
+          placeholder="Your Name"
+          defaultValue=""
+          {...register("example")}
+        />
+        {errors.exampleRequired && <span>This field is required</span>}
         <Select onValueChange={(value) => setValue("gender", value)}>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Select Gender" />
@@ -102,9 +95,9 @@ const NewEmploye = () => {
           </SelectContent>
         </Select>
 
-        <SubmitButton className="w-full">Add Employee</SubmitButton>
+        <SubmitButton className="w-full">Add Admin</SubmitButton>
       </form>
     </div>
   );
 };
-export default NewEmploye;
+export default NewAdmin;
