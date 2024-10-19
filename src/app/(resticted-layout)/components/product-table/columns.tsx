@@ -3,13 +3,12 @@ import { ColumnDef } from "@tanstack/react-table";
 import { DataTableColumnHeader } from "./data-table-column-header";
 import { ProductDataTableRowActions } from "./data-table-row-actions";
 
-import { statuses } from "./data/data";
-import { Task } from "./data/schema";
+import { Product } from "./data/schema";
 import DataTableProductCost from "./data-table-product-cost";
 import DataTableProductPrice from "./data-table-product-price";
 import DataTableProductRecipe from "./data-table-product-recipe";
 
-export const columns: ColumnDef<Task>[] = [
+export const columns: ColumnDef<Product>[]= [
   {
     id: "serial",
     header: "S/N",
@@ -21,7 +20,7 @@ export const columns: ColumnDef<Task>[] = [
   {
     accessorKey: "title",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Title" />
+      <DataTableColumnHeader column={column} title="Pitha Name" />
     ),
     cell: ({ row }) => {
       return (
@@ -57,9 +56,7 @@ export const columns: ColumnDef<Task>[] = [
       <DataTableColumnHeader column={column} title="Status" />
     ),
     cell: ({ row }) => {
-      const status = statuses.find(
-        (status) => status.value === row.getValue("status")
-      );
+      const status = row.original.status;
 
       if (!status) {
         return null;
@@ -67,10 +64,8 @@ export const columns: ColumnDef<Task>[] = [
 
       return (
         <div className="flex w-[100px] items-center">
-          {status.icon && (
-            <status.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-          )}
-          <span>{status.label}</span>
+          
+          <span>{status}</span>
         </div>
       );
     },

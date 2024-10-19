@@ -11,7 +11,7 @@ export const productsApi = baseApi.injectEndpoints({
       query: (data) => {
         // for (const pair of data.entries()) {
         //   console.log(pair[0] + ":", pair[1]);
-        // }
+        // }0
         return {
         url: `${PATH}/create-product`,
         method: "POST",

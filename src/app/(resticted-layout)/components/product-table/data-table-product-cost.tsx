@@ -6,19 +6,24 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { Row } from "@tanstack/react-table";
+import { Product } from "./data/schema";
 
-interface DataTableProductCostProps<TData> {
-  row: Row<TData>;
+interface DataTableProductCostProps {
+  row: Row<Product>; // Specify the type of row as Product
 }
 
-const DataTableProductCost = <TData,>({
-  row,
-}: DataTableProductCostProps<TData>) => {
-  // Assuming the row contains 'materialCost', 'labourCost', 'maintenanceCost', and 'transportationCost' as fields.
-  const materialCost = Number(row.getValue('materialCost')) || 0;
-  const labourCost = Number(row.getValue('labourCost')) || 0;
-  const maintenanceCost = Number(row.getValue('maintenanceCost')) || 0;
-  const transportationCost = Number(row.getValue('transportationCost')) || 0;
+const DataTableProductCost: React.FC<DataTableProductCostProps> = ({ row }) => {
+  // Access cost directly from the original product object
+  const cost = row.original.cost;
+
+
+  // Destructure with fallback values
+  const {
+    materialCost = 0,
+    labourCost = 0,
+    maintenanceCost = 0,
+    transportationCost = 0,
+  } = cost || {};
 
   return (
     <div>
@@ -30,12 +35,11 @@ const DataTableProductCost = <TData,>({
         <HoverCardContent>
           {/* Display detailed cost breakdown on hover */}
           <div>
-            <p className="text-lg ">Product Cost</p>
-            <p><strong>Material Cost:</strong> ${materialCost}</p>
-            <p><strong>Labour Cost:</strong> ${labourCost}</p>
-            <p><strong>Maintenance Cost:</strong> ${maintenanceCost}</p>
-            <p><strong>Transportation Cost:</strong> ${transportationCost}</p>
-            <p><strong>Total Cost:</strong> ${materialCost + labourCost + maintenanceCost + transportationCost}</p>
+            <p className="text-lg">Product Cost</p>
+            <p><strong>Material Cost:</strong> ৳{materialCost.toFixed(2)}</p>
+            <p><strong>Labour Cost:</strong> ৳{labourCost.toFixed(2)}</p>
+            <p><strong>Maintenance Cost:</strong> ৳{maintenanceCost.toFixed(2)}</p>
+            <p><strong>Transportation Cost:</strong> ৳{transportationCost.toFixed(2)}</p>
           </div>
         </HoverCardContent>
       </HoverCard>
@@ -44,6 +48,16 @@ const DataTableProductCost = <TData,>({
 };
 
 export default DataTableProductCost;
+
+
+
+
+
+
+
+
+
+
 
 
 
