@@ -23,14 +23,21 @@ import { getUserInfo } from "@/services/auth.services";
 import dynamic from "next/dynamic";
 import { handleDeleteImage } from "@/utils/handleCloudinaryFileDelete";
 import CloudApi from "@/utils/CloudinaryApi";
-import { CustomerSchema } from "./customerValidation";
 
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { CustomerSchema } from "./customerValidation";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 export default function CustomerUpdateModal() {
   const [userRole, setUserRole] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [image, setImage] = useState<string | undefined>(undefined);
-
   const form = useForm<z.infer<typeof CustomerSchema>>({
     resolver: zodResolver(CustomerSchema),
     defaultValues: { title: "", email: "", phone: "", details: "" },
@@ -54,22 +61,19 @@ export default function CustomerUpdateModal() {
       setFile(selectedFile);
     } else {
       console.error("Selected file is not an image.");
-      // Optionally, you can display a message to the user
     }
   };
-
   const onSubmit = async (formValues: z.infer<typeof CustomerSchema>) => {
     const data = {
       ...formValues,
       image,
     };
-
     console.log("🚀 ~ onSubmit ~ data:", data);
     try {
-      // const res = await createProduct(data).unwrap();
+      // const res = await UpdateProduct(data).unwrap();
       // console.log("🚀 ~ onSubmit ~ res:", res);
     } catch (error) {
-      console.error("Failed to create product:", error);
+      console.error("Failed to Update product:", error);
     }
   };
 
@@ -79,7 +83,6 @@ export default function CustomerUpdateModal() {
         cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "",
         uploadPreset: process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "",
       });
-
       if (file) {
         try {
           await cloudApi.uploadImage(
@@ -101,7 +104,6 @@ export default function CustomerUpdateModal() {
         }
       }
     };
-
     uploadImage();
   }, [file]);
 
@@ -117,7 +119,6 @@ export default function CustomerUpdateModal() {
       localStorage.removeItem(key);
     }
   };
-
   return (
     <>
       <Form {...form}>
@@ -125,26 +126,20 @@ export default function CustomerUpdateModal() {
           <main className="grid flex-1 items-start gap-4 p-4 md:gap-8 sm:gap-4 sm:py-4">
             <div className="mx-auto grid max-w-[75rem] flex-1 auto-rows-max gap-4">
               <div className="flex items-center gap-4">
-                <Link href={`/dashboard/${userRole}/product-manage`}>
-                  <Button variant="outline" size="icon" className="h-7 w-16">
-                    <ChevronLeft className="h-4 w-4" />
-                    <span className="">Back</span>
-                  </Button>
-                </Link>
                 <h1 className="flex-1 shrink-0 whitespace-nowrap text-xl font-semibold tracking-tight sm:grow-0">
-                  Update Admin Information
+                  Update Customer
                 </h1>
               </div>
               <div className="items-center gap-2 md:ml-auto md:flex">
                 <Button type="submit" size="sm" className="text-lg">
-                  Update Admin
+                  Update Customer
                 </Button>
               </div>
               <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
                 <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
                   <Card x-chunk="dashboard-07-chunk-0">
                     <CardHeader>
-                      <CardTitle>Admin Details</CardTitle>
+                      <CardTitle>Cutomer Details</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="grid gap-6">
@@ -153,9 +148,9 @@ export default function CustomerUpdateModal() {
                           name="title" // Should match the schema
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Admin Name</FormLabel>
+                              <FormLabel>Customer Name</FormLabel>
                               <FormControl>
-                                <Input placeholder="Admin Name" {...field} />
+                                <Input placeholder="Customer Name" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -163,12 +158,15 @@ export default function CustomerUpdateModal() {
                         />
                         <FormField
                           control={form.control}
-                          name="email" // Should match the schema
+                          name="email"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Admin Email</FormLabel>
+                              <FormLabel>Customer Email</FormLabel>
                               <FormControl>
-                                <Input placeholder="Admin Email" {...field} />
+                                <Input
+                                  placeholder="Customer Email"
+                                  {...field}
+                                />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -176,12 +174,15 @@ export default function CustomerUpdateModal() {
                         />
                         <FormField
                           control={form.control}
-                          name="phone" // Should match the schema
+                          name="phone"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Admin Phone</FormLabel>
+                              <FormLabel>Customer Phone</FormLabel>
                               <FormControl>
-                                <Input placeholder="Admin Phone" {...field} />
+                                <Input
+                                  placeholder="Customer Phone"
+                                  {...field}
+                                />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -189,10 +190,10 @@ export default function CustomerUpdateModal() {
                         />
                         <FormField
                           control={form.control}
-                          name="details" // Should match the schema
+                          name="details"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Designation</FormLabel>
+                              <FormLabel>Customer Details</FormLabel>
                               <FormControl>
                                 <ReactQuill
                                   {...field}
@@ -210,13 +211,52 @@ export default function CustomerUpdateModal() {
                     </CardContent>
                   </Card>
                 </div>
+
                 <div className="grid auto-rows-max items-start gap-4 lg:gap-8">
+                  <FormField
+                    control={form.control}
+                    name="gender"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Gender</FormLabel>
+                        <FormControl>
+                          <Select
+                            onValueChange={field.onChange}
+                            value={field.value}
+                          >
+                            <SelectTrigger className="w-[180px]">
+                              <SelectValue placeholder="Select Gender" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectGroup>
+                                <SelectItem value="male">Male</SelectItem>
+                                <SelectItem value="female">Female</SelectItem>
+                                <SelectItem value="non-binary">
+                                  Non-binary
+                                </SelectItem>
+                                <SelectItem value="transgender">
+                                  Transgender
+                                </SelectItem>
+                              </SelectGroup>
+                            </SelectContent>
+                          </Select>
+                        </FormControl>
+                        <FormMessage>
+                          {errors.gender && (
+                            <span className="text-red-500">
+                              {errors.gender.message}
+                            </span>
+                          )}
+                        </FormMessage>
+                      </FormItem>
+                    )}
+                  />
                   <Card
                     className="overflow-hidden"
                     x-chunk="dashboard-07-chunk-4"
                   >
                     <CardHeader>
-                      <CardTitle>Product Image</CardTitle>
+                      <CardTitle>Customer Profile Image</CardTitle>
                     </CardHeader>
                     <CardContent>
                       {file ? (

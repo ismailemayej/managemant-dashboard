@@ -1,10 +1,11 @@
 import React from "react";
-import { columns } from "../../../../../components/product-table/columns";
-import { tasks } from "../../../../../components/product-table/data/tasks";
-import { EmployeeListDataTable } from "@/app/(resticted-layout)/components/employee-table/employee-list-data-table";
+
 import UiRoute from "@/components/UiRoute/UiRoute";
 import CommonButton from "@/components/button/CummonButton";
 import Title from "@/components/Title/Title";
+import { EmployeeListDataTable } from "@/app/(resticted-layout)/components/employee-table/employee-list-data-table";
+import { tasks } from "@/app/(resticted-layout)/components/employee-table/data/tasks";
+import { columns } from "@/app/(resticted-layout)/components/employee-table/columns";
 
 const EmployeList = () => {
   const pathRoute = [

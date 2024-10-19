@@ -24,12 +24,21 @@ import dynamic from "next/dynamic";
 import { handleDeleteImage } from "@/utils/handleCloudinaryFileDelete";
 import CloudApi from "@/utils/CloudinaryApi";
 import { AdminSchema } from "./adminValidation";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export default function AdminUpdateModal() {
   const [userRole, setUserRole] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [value, setValue] = useState();
   const [image, setImage] = useState<string | undefined>(undefined);
 
   const form = useForm<z.infer<typeof AdminSchema>>({
@@ -67,10 +76,10 @@ export default function AdminUpdateModal() {
 
     console.log("🚀 ~ onSubmit ~ data:", data);
     try {
-      // const res = await createProduct(data).unwrap();
+      // const res = await UpdateProduct(data).unwrap();
       // console.log("🚀 ~ onSubmit ~ res:", res);
     } catch (error) {
-      console.error("Failed to create product:", error);
+      console.error("Failed to Update product:", error);
     }
   };
 
@@ -126,14 +135,8 @@ export default function AdminUpdateModal() {
           <main className="grid flex-1 items-start gap-4 p-4 md:gap-8 sm:gap-4 sm:py-4">
             <div className="mx-auto grid max-w-[75rem] flex-1 auto-rows-max gap-4">
               <div className="flex items-center gap-4">
-                <Link href={`/dashboard/${userRole}/product-manage`}>
-                  <Button variant="outline" size="icon" className="h-7 w-16">
-                    <ChevronLeft className="h-4 w-4" />
-                    <span className="">Back</span>
-                  </Button>
-                </Link>
                 <h1 className="flex-1 shrink-0 whitespace-nowrap text-xl font-semibold tracking-tight sm:grow-0">
-                  Update Admin Information
+                  Update Admin
                 </h1>
               </div>
               <div className="items-center gap-2 md:ml-auto md:flex">
@@ -190,6 +193,29 @@ export default function AdminUpdateModal() {
                         />
                         <FormField
                           control={form.control}
+                          name="password" // Add password field here
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Password</FormLabel>
+                              <FormControl>
+                                <Input
+                                  type="password"
+                                  placeholder="Enter password"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage>
+                                {errors.password && (
+                                  <span className="text-red-500">
+                                    {errors.password.message}
+                                  </span>
+                                )}
+                              </FormMessage>
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
                           name="details" // Should match the schema
                           render={({ field }) => (
                             <FormItem>
@@ -211,13 +237,52 @@ export default function AdminUpdateModal() {
                     </CardContent>
                   </Card>
                 </div>
+
                 <div className="grid auto-rows-max items-start gap-4 lg:gap-8">
+                  <FormField
+                    control={form.control}
+                    name="gender"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Gender</FormLabel>
+                        <FormControl>
+                          <Select
+                            onValueChange={field.onChange}
+                            value={field.value}
+                          >
+                            <SelectTrigger className="w-[180px]">
+                              <SelectValue placeholder="Select Gender" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectGroup>
+                                <SelectItem value="male">Male</SelectItem>
+                                <SelectItem value="female">Female</SelectItem>
+                                <SelectItem value="non-binary">
+                                  Non-binary
+                                </SelectItem>
+                                <SelectItem value="transgender">
+                                  Transgender
+                                </SelectItem>
+                              </SelectGroup>
+                            </SelectContent>
+                          </Select>
+                        </FormControl>
+                        <FormMessage>
+                          {errors.gender && (
+                            <span className="text-red-500">
+                              {errors.gender.message}
+                            </span>
+                          )}
+                        </FormMessage>
+                      </FormItem>
+                    )}
+                  />
                   <Card
                     className="overflow-hidden"
                     x-chunk="dashboard-07-chunk-4"
                   >
                     <CardHeader>
-                      <CardTitle>Product Image</CardTitle>
+                      <CardTitle>Admin Profile Image</CardTitle>
                     </CardHeader>
                     <CardContent>
                       {file ? (

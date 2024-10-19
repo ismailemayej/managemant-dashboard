@@ -1,7 +1,5 @@
 import React from "react";
-
 import { tasks } from "../../../../../components/product-table/data/tasks";
-
 import UiRoute from "@/components/UiRoute/UiRoute";
 import CommonButton from "@/components/button/CummonButton";
 import Title from "@/components/Title/Title";

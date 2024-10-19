@@ -4,6 +4,7 @@ import CommonButton from "@/components/button/CummonButton";
 import Title from "@/components/Title/Title";
 import { Modal } from "@/components/dialog/Dialog";
 import ManageAdmin from "../ManageAdmin";
+import AdminUpdateModal from "../add-new-admin/admin-update-modal";
 
 interface Admin {
   id: number;
@@ -54,7 +55,7 @@ const AllAdmin = ({ admins }: { admins: Admin[] }) => {
               <Modal
                 button="Manage"
                 name="User Information"
-                body={<ManageAdmin />}
+                body={<AdminUpdateModal />}
               />
             </div>
           </div>

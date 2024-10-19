@@ -35,7 +35,7 @@ import {
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
-export default function AdminUpdateModal() {
+export default function NewAdmin() {
   const [userRole, setUserRole] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [value, setValue] = useState();

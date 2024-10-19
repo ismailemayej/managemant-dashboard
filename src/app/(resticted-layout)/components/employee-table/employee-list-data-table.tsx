@@ -23,19 +23,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { DataTablePagination } from "./data-table-pagination";
+import { DataTableToolbar } from "./data-table-toolbar";
 
-import { DataTablePagination } from "../product-table/data-table-pagination";
-import { DataTableToolbar } from "../product-table/data-table-toolbar";
-
-interface EmployDataTableProps<TData, TValue> {
+interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
-
 export function EmployeeListDataTable<TData, TValue>({
   columns,
   data,
-}: EmployDataTableProps<TData, TValue>) {
+}: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
@@ -65,6 +63,7 @@ export function EmployeeListDataTable<TData, TValue>({
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
   });
+
   return (
     <div className="space-y-4">
       <DataTableToolbar table={table} />

@@ -39,7 +39,6 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 export default function NewCustomer() {
   const [userRole, setUserRole] = useState("");
   const [file, setFile] = useState<File | null>(null);
-  const [value, setValue] = useState();
   const [image, setImage] = useState<string | undefined>(undefined);
 
   const form = useForm<z.infer<typeof CustomerSchema>>({

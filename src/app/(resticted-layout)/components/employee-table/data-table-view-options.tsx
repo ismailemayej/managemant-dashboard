@@ -2,8 +2,7 @@ import { Table } from "@tanstack/react-table";
 
 import { Modal2 } from "@/components/dialog/Dialog2";
 import { PencilOff, Trash2 } from "lucide-react";
-import ManageEmploye from "../../dashboard/(route)/superadmin/(employee-route)/ManageEmployee";
-
+import EmployeUpdateModal from "../../dashboard/(route)/superadmin/(employee-route)/empolye-update-modal";
 interface DataTableViewOptionsProps<TData> {
   table: Table<TData>;
 }
@@ -18,7 +17,7 @@ export function DataTableViewOptions<TData>({
           <PencilOff className="text-red-500 p-1 border-r hover:bg-slate-300" />
         }
         name="Employe"
-        body={<ManageEmploye />}
+        body={<EmployeUpdateModal />}
       />
       <Trash2 className="text-red-500 p-1" />
     </div>
