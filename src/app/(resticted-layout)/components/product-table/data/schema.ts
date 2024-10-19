@@ -17,7 +17,7 @@ export const costSchema = z.object({
 
 // Define the schema for Product
 export const productSchema = z.object({
-  id: z.string(),
+  _id :  z.string(),
   title: z.string(),
   image: z.string().optional(),   // Assuming image can be optional for frontend
   details: z.string(),

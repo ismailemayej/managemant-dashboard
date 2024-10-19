@@ -1,25 +1,30 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Row } from "@tanstack/react-table";
 import { Modal2 } from "@/components/dialog/Dialog2";
-import ManageProduct from "../../dashboard/(route)/super-admin/(product-route)/ManageProduct";
 import { PencilOff, Trash2 } from "lucide-react";
-interface DataTableRowActionsProps<TData> {
-  row: Row<TData>;
+import ProductUpdateModal from "../../dashboard/(route)/super-admin/(product-route)/add-new-product/product-update-modal";
+import { Product } from "./data/schema";
+
+
+interface DataTableProductPriceProps {
+  row: Row<Product>;
 }
-export function ProductDataTableRowActions<TData>({
-  row,
-}: DataTableRowActionsProps<TData>) {
-  // const task = taskSchema.parse(row.original)
+
+  
+const ProductDataTableRowActions: React.FC<DataTableProductPriceProps> = ({ row }) => {
+  const productId = row.original._id; 
+  console.log("🚀 ~ productId:", productId)
   return (
-    <div className="flex justify-center border rounded-lg">
+    <div className="flex justify-center border rounded-lg" >
       <Modal2
         button={
           <PencilOff className="text-red-500 p-1 border-r hover:bg-slate-300" />
         }
         name="Products"
-        body={<ManageProduct />}
+        body={<ProductUpdateModal  />}
       />
       <Trash2 className="text-red-500 p-1" />
     </div>
   );
 }
+export default ProductDataTableRowActions;

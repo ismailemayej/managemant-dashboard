@@ -1,12 +1,11 @@
 "use client";
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTableColumnHeader } from "./data-table-column-header";
-import { ProductDataTableRowActions } from "./data-table-row-actions";
-
 import { Product } from "./data/schema";
 import DataTableProductCost from "./data-table-product-cost";
 import DataTableProductPrice from "./data-table-product-price";
 import DataTableProductRecipe from "./data-table-product-recipe";
+import ProductDataTableRowActions from "./data-table-row-actions";
 
 export const columns: ColumnDef<Product>[]= [
   {
