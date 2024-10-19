@@ -38,7 +38,7 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 export default function AdminUpdateModal() {
   const [userRole, setUserRole] = useState("");
   const [file, setFile] = useState<File | null>(null);
-
+  const [value, setValue] = useState();
   const [image, setImage] = useState<string | undefined>(undefined);
 
   const form = useForm<z.infer<typeof AdminSchema>>({
@@ -199,6 +199,29 @@ export default function AdminUpdateModal() {
                         />
                         <FormField
                           control={form.control}
+                          name="password" // Add password field here
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Password</FormLabel>
+                              <FormControl>
+                                <Input
+                                  type="password"
+                                  placeholder="Enter password"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage>
+                                {errors.password && (
+                                  <span className="text-red-500">
+                                    {errors.password.message}
+                                  </span>
+                                )}
+                              </FormMessage>
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
                           name="details" // Should match the schema
                           render={({ field }) => (
                             <FormItem>
@@ -222,12 +245,50 @@ export default function AdminUpdateModal() {
                 </div>
 
                 <div className="grid auto-rows-max items-start gap-4 lg:gap-8">
+                  <FormField
+                    control={form.control}
+                    name="gender"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Gender</FormLabel>
+                        <FormControl>
+                          <Select
+                            onValueChange={field.onChange}
+                            value={field.value}
+                          >
+                            <SelectTrigger className="w-[180px]">
+                              <SelectValue placeholder="Select Gender" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectGroup>
+                                <SelectItem value="male">Male</SelectItem>
+                                <SelectItem value="female">Female</SelectItem>
+                                <SelectItem value="non-binary">
+                                  Non-binary
+                                </SelectItem>
+                                <SelectItem value="transgender">
+                                  Transgender
+                                </SelectItem>
+                              </SelectGroup>
+                            </SelectContent>
+                          </Select>
+                        </FormControl>
+                        <FormMessage>
+                          {errors.gender && (
+                            <span className="text-red-500">
+                              {errors.gender.message}
+                            </span>
+                          )}
+                        </FormMessage>
+                      </FormItem>
+                    )}
+                  />
                   <Card
                     className="overflow-hidden"
                     x-chunk="dashboard-07-chunk-4"
                   >
                     <CardHeader>
-                      <CardTitle>Admin Profile Image</CardTitle>
+                      <CardTitle>Product Image</CardTitle>
                     </CardHeader>
                     <CardContent>
                       {file ? (
