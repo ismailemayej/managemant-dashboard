@@ -4,6 +4,7 @@ export enum tagTypes {
     products= "products",
     employee= "employee",
     order= "order",
+    customers = "customers",
     cart= "cart"
  }
  
@@ -13,5 +14,7 @@ export enum tagTypes {
     tagTypes.products,
     tagTypes.employee,
     tagTypes.order,
+    tagTypes.customers,
     tagTypes.cart
  ];
+ 
