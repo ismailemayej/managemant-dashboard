@@ -7,14 +7,15 @@ import {
 import { Row } from "@tanstack/react-table";
 import { Product } from "./data/schema";
 import DOMPurify from "dompurify";
-
 interface DataTableProductRecipeProps {
   row: Row<Product>;
 }
 
-const DataTableProductRecipe: React.FC<DataTableProductRecipeProps> = ({ row }) => {
+const DataTableProductRecipe: React.FC<DataTableProductRecipeProps> = ({
+  row,
+}) => {
   // Access the details and sanitize it
-  const details = row.original.details || ''; // Fallback to an empty string if undefined
+  const details = row.original.details || ""; // Fallback to an empty string if undefined
   const cleanHtml = DOMPurify.sanitize(details);
 
   return (
