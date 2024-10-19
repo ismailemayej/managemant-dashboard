@@ -1,4 +1,3 @@
-
 "use client";
 import { Post } from "@/components/ApiHandle";
 import SubmitButton from "@/components/button/SubmitButton";
@@ -11,6 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import React from "react";
 import { useForm } from "react-hook-form";
 const NewAdmin = () => {
@@ -41,46 +41,32 @@ const NewAdmin = () => {
       >
         <Input
           type="text"
-          placeholder="Your Name"
+          placeholder="Admin Name"
           defaultValue=""
-          {...register("example")}
+          {...register("name")}
         />
-        {errors.exampleRequired && <span>This field is required</span>}
+        {errors.name && <span>This field is required</span>}
         <Input
           type="text"
-          placeholder="Your Name"
+          placeholder="Admin Email"
           defaultValue=""
-          {...register("example")}
+          {...register("email")}
         />
-        {errors.exampleRequired && <span>This field is required</span>}
+        {errors.email && <span>This field is required</span>}
         <Input
-          type="text"
-          placeholder="Your Name"
+          type="number"
+          placeholder="Mobile"
           defaultValue=""
-          {...register("example")}
+          {...register("phone")}
         />
-        {errors.exampleRequired && <span>This field is required</span>}
-        <Input
-          type="text"
-          placeholder="Your Name"
+        {errors.phone && <span>This field is required</span>}
+        <Textarea
+          placeholder="designation"
           defaultValue=""
-          {...register("example")}
+          {...register("designation")}
         />
-        {errors.exampleRequired && <span>This field is required</span>}
-        <Input
-          type="text"
-          placeholder="Your Name"
-          defaultValue=""
-          {...register("example")}
-        />
-        {errors.exampleRequired && <span>This field is required</span>}
-        <Input
-          type="text"
-          placeholder="Your Name"
-          defaultValue=""
-          {...register("example")}
-        />
-        {errors.exampleRequired && <span>This field is required</span>}
+        {errors.designation && <span>This field is required</span>}
+
         <Select onValueChange={(value) => setValue("gender", value)}>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Select Gender" />

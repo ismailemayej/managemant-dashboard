@@ -14,12 +14,10 @@ type TDebouncedProps = {
 
 export const useDebounced = ({ searchQuery, delay }: TDebouncedProps) => {
   const [debouncedValue, setDebouncedValue] = useState<string>(searchQuery);
-
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedValue(searchQuery);
     }, delay);
-
     return () => {
       clearTimeout(handler);
     };
