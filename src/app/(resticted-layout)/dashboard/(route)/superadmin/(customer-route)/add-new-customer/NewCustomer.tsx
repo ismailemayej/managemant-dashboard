@@ -1,8 +1,29 @@
-
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-import { Post } from "@/components/ApiHandle";
-import SubmitButton from "@/components/button/SubmitButton";
+import "react-quill/dist/quill.snow.css";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import Image from "next/image";
+import { ChevronLeft, Upload } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { getUserInfo } from "@/services/auth.services";
+import dynamic from "next/dynamic";
+import { handleDeleteImage } from "@/utils/handleCloudinaryFileDelete";
+import CloudApi from "@/utils/CloudinaryApi";
+
 import {
   Select,
   SelectContent,
@@ -11,86 +32,287 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import UiRoute from "@/components/UiRoute/UiRoute";
-import React from "react";
-import { useForm } from "react-hook-form";
-const NewCustomer = () => {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = async (data: any) => {
-    // await Post("data", "name");
-    console.log(data);
-  };
-  const routes = [
-    { name: "Dashboard", link: "/dashboard/superadmin" },
-    { name: "Customers", link: "/dashboard/superadmin/customer-list" },
-    { name: "add Customers", link: "/dashboard/superadmin/add-new-customer" },
-  ];
-  return (
-    <div>
-      <UiRoute routes={routes} />
-      <h1 className="text-center text-3xl font-bold">Add New Customer</h1>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="grid lg:grid-cols-2 grid-cols-1 lg:gap-8 gap-4 mx-5 lg:mx-10 border rounded-lg p-6 "
-      >
-        <Input
-          type="number"
-          placeholder="SL Number"
-          defaultValue=""
-          {...register("slNumber", { required: true, valueAsNumber: true })}
-        />
-        {errors.slNumber && <span>This field is required</span>}
-        <Input
-          type="text"
-          placeholder="Customer’s name"
-          defaultValue=""
-          {...register("customerName", { required: true })}
-        />
-        {errors.customerName && <span>This field is required</span>}
-        <Input
-          type="text"
-          placeholder="Phone Number"
-          defaultValue=""
-          {...register("phoneNumber", { required: true })}
-        />
-        {errors.phoneNumber && <span>This field is required</span>}
-        <Input
-          type="text"
-          placeholder="Address"
-          defaultValue=""
-          {...register("address", { required: true })}
-        />
-        {errors.address && <span>This field is required</span>}
-        <Input
-          type="number"
-          placeholder="Number of Purchase"
-          defaultValue=""
-          {...register("numberOfPurchase", {
-            required: true,
-            valueAsNumber: true,
-          })}
-        />
-        {errors.numberOfPurchase && <span>This field is required</span>}
-        <Select onValueChange={(value) => setValue("purchaseType", value)}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Regular/Irregular" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="regular">Regular</SelectItem>
-              <SelectItem value="irregular">Irregular</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+import { CustomerSchema } from "../customerValidation";
 
-        <SubmitButton className="w-full">Add Customer</SubmitButton>
-      </form>
-    </div>
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+
+export default function NewCustomer() {
+  const [userRole, setUserRole] = useState("");
+  const [file, setFile] = useState<File | null>(null);
+  const [value, setValue] = useState();
+  const [image, setImage] = useState<string | undefined>(undefined);
+
+  const form = useForm<z.infer<typeof CustomerSchema>>({
+    resolver: zodResolver(CustomerSchema),
+    defaultValues: { title: "", email: "", phone: "", details: "" },
+  });
+
+  useEffect(() => {
+    const { role } = getUserInfo() as any;
+    setUserRole(role);
+  }, []);
+
+  const {
+    formState: { errors },
+  } = form;
+
+  console.log("Form errors:", errors);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
+
+    if (selectedFile && selectedFile.type.startsWith("image/")) {
+      setFile(selectedFile);
+    } else {
+      console.error("Selected file is not an image.");
+      // Optionally, you can display a message to the user
+    }
+  };
+
+  const onSubmit = async (formValues: z.infer<typeof CustomerSchema>) => {
+    const data = {
+      ...formValues,
+      image,
+    };
+    console.log("🚀 ~ onSubmit ~ data:", data);
+    try {
+      // const res = await createProduct(data).unwrap();
+      // console.log("🚀 ~ onSubmit ~ res:", res);
+    } catch (error) {
+      console.error("Failed to create product:", error);
+    }
+  };
+
+  useEffect(() => {
+    const uploadImage = async () => {
+      const cloudApi = new CloudApi({
+        cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "",
+        uploadPreset: process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "",
+      });
+      if (file) {
+        try {
+          await cloudApi.uploadImage(
+            file,
+            (success: any) => {
+              console.log("Image uploaded successfully:", success);
+              setImage(success?.secure_url);
+              localStorage.setItem(
+                "public_id",
+                JSON.stringify(success?.public_id)
+              );
+            },
+            (error: any) => {
+              console.error("Error uploading image:", error);
+            }
+          );
+        } catch (error) {
+          console.error("Error uploading image:", error);
+        }
+      }
+    };
+    uploadImage();
+  }, [file]);
+
+  const handleImageReset = (key: string) => {
+    const publicIdString = localStorage.getItem(key);
+    if (publicIdString) {
+      const publicId = JSON.parse(publicIdString);
+      handleDeleteImage(publicId);
+      if (key === "public_id") {
+        setFile(null);
+        setImage(undefined);
+      }
+      localStorage.removeItem(key);
+    }
+  };
+  return (
+    <>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <main className="grid flex-1 items-start gap-4 p-4 md:gap-8 sm:gap-4 sm:py-4">
+            <div className="mx-auto grid max-w-[75rem] flex-1 auto-rows-max gap-4">
+              <div className="flex items-center gap-4">
+                <Link href={`/dashboard/${userRole}/product-manage`}>
+                  <Button variant="outline" size="icon" className="h-7 w-16">
+                    <ChevronLeft className="h-4 w-4" />
+                    <span className="">Back</span>
+                  </Button>
+                </Link>
+                <h1 className="flex-1 shrink-0 whitespace-nowrap text-xl font-semibold tracking-tight sm:grow-0">
+                  Create Customer
+                </h1>
+              </div>
+              <div className="items-center gap-2 md:ml-auto md:flex">
+                <Button type="submit" size="sm" className="text-lg">
+                  Create Customer
+                </Button>
+              </div>
+              <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
+                <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
+                  <Card x-chunk="dashboard-07-chunk-0">
+                    <CardHeader>
+                      <CardTitle>Cutomer Details</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid gap-6">
+                        <FormField
+                          control={form.control}
+                          name="title" // Should match the schema
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Customer Name</FormLabel>
+                              <FormControl>
+                                <Input placeholder="Customer Name" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="email"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Customer Email</FormLabel>
+                              <FormControl>
+                                <Input
+                                  placeholder="Customer Email"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="phone"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Customer Phone</FormLabel>
+                              <FormControl>
+                                <Input
+                                  placeholder="Customer Phone"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="details"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Customer Details</FormLabel>
+                              <FormControl>
+                                <ReactQuill
+                                  {...field}
+                                  value={field.value || ""}
+                                  onChange={field.onChange}
+                                  className="w-full"
+                                  placeholder="details"
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                <div className="grid auto-rows-max items-start gap-4 lg:gap-8">
+                  <FormField
+                    control={form.control}
+                    name="gender"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Gender</FormLabel>
+                        <FormControl>
+                          <Select
+                            onValueChange={field.onChange}
+                            value={field.value}
+                          >
+                            <SelectTrigger className="w-[180px]">
+                              <SelectValue placeholder="Select Gender" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectGroup>
+                                <SelectItem value="male">Male</SelectItem>
+                                <SelectItem value="female">Female</SelectItem>
+                                <SelectItem value="non-binary">
+                                  Non-binary
+                                </SelectItem>
+                                <SelectItem value="transgender">
+                                  Transgender
+                                </SelectItem>
+                              </SelectGroup>
+                            </SelectContent>
+                          </Select>
+                        </FormControl>
+                        <FormMessage>
+                          {errors.gender && (
+                            <span className="text-red-500">
+                              {errors.gender.message}
+                            </span>
+                          )}
+                        </FormMessage>
+                      </FormItem>
+                    )}
+                  />
+                  <Card
+                    className="overflow-hidden"
+                    x-chunk="dashboard-07-chunk-4"
+                  >
+                    <CardHeader>
+                      <CardTitle>Customer Profile Image</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      {file ? (
+                        <div>
+                          <Image
+                            src={image || ""}
+                            alt="Uploaded image"
+                            width={200}
+                            height={200}
+                            className="aspect-square w-full rounded-md object-cover"
+                          />
+                          <Button
+                            type="button"
+                            onClick={() => handleImageReset("public_id")}
+                            size="sm"
+                            variant="outline"
+                            className="mt-1"
+                          >
+                            Reset Image
+                          </Button>
+                        </div>
+                      ) : (
+                        <div className="aspect-square flex flex-col justify-center items-center relative w-full cursor-pointer appearance-none rounded border-2 border-dashed bg-gray py-4 px-4 dark:bg-meta-4 sm:py-7.5 mt-5">
+                          <Input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleFileChange}
+                            className="absolute inset-0 z-50 m-0 h-full w-full cursor-pointer p-0 opacity-0 outline-none"
+                          />
+                          <div className="flex flex-col justify-center items-center text-center">
+                            <Upload className="h-4 w-4 text-muted-foreground" />
+                            <span className="sr-only">Upload</span>
+                            <p>Drag and drop a file or click to browse Image</p>
+                          </div>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            </div>
+          </main>
+        </form>
+      </Form>
+    </>
   );
-};
-export default NewCustomer;
+}

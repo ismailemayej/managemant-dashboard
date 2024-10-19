@@ -288,7 +288,7 @@ export default function AdminUpdateModal() {
                     x-chunk="dashboard-07-chunk-4"
                   >
                     <CardHeader>
-                      <CardTitle>Product Image</CardTitle>
+                      <CardTitle>Admin Profile Image</CardTitle>
                     </CardHeader>
                     <CardContent>
                       {file ? (

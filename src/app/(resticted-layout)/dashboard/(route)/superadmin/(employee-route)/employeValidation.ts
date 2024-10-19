@@ -1,11 +1,15 @@
 import { z } from "zod";
+
 export const EmployeSchema = z.object({
-  title: z.string().min(1, "Admin Name is required"),
-  email: z.string().email("Invalid email format").nonempty("Email is required"),
-  phone: z
+  title: z.string().nonempty("Employe name is required."),
+  email: z
     .string()
-    .regex(/^[0-9]+$/, "Phone number should contain only digits")
-    .min(10, "Phone number must be at least 10 digits")
-    .max(15, "Phone number can be a maximum of 15 digits"),
-  details: z.string().nonempty("Designation is required"),
+    .email("Invalid email address.")
+    .nonempty("Email is required."),
+  phone: z.string().nonempty("Phone number is required."),
+  details: z.string().nonempty("Designation is required."),
+  gender: z.enum(["male", "female", "non-binary", "transgender"], {
+    errorMap: () => ({ message: "Gender is required." }),
+  }),
+  password: z.string().min(6, "Password must be at least 6 characters long."),
 });
