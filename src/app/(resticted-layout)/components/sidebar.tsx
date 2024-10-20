@@ -1,33 +1,39 @@
-'use client';
-import { DashboardNav } from './dashboard-nav';
-import { navItems } from '../../../../constants/data'; 
-import { useSidebar } from '../../../../hooks/useSidebar'; 
-import { cn } from '@/lib/utils';
-import { ChevronLeft } from 'lucide-react';
-import Link from 'next/link';
+"use client";
+import { DashboardNav } from "./dashboard-nav";
+import { navItems } from "../../../../constants/data";
+import { useSidebar } from "../../../../hooks/useSidebar";
+import { cn } from "@/lib/utils";
+import { ChevronLeft } from "lucide-react";
+import Link from "next/link";
 
 type SidebarProps = {
   className?: string;
+  role: string;
 };
 
-export default function Sidebar({ className }: SidebarProps) {
+export default function Sidebar({ className, role }: SidebarProps) {
   const { isMinimized, toggle } = useSidebar();
 
   const handleToggle = () => {
     toggle();
   };
-
+  const filteredNavItems = navItems.filter((item) => {
+    if (item?.roles && !item.roles?.includes(role)) {
+      return false;
+    }
+    return true;
+  });
   return (
     <aside
       className={cn(
         `relative  hidden h-screen flex-none border-r bg-card transition-[width] duration-500 md:block`,
-        !isMinimized ? 'w-72' : 'w-[72px]',
+        !isMinimized ? "w-72" : "w-[72px]",
         className
       )}
     >
       <div className="hidden p-5 pt-10 lg:block">
         <Link
-          href={'https://github.com/Kiranism/next-shadcn-dashboard-starter'}
+          href={"https://github.com/Kiranism/next-shadcn-dashboard-starter"}
           target="_blank"
         >
           <svg
@@ -46,15 +52,15 @@ export default function Sidebar({ className }: SidebarProps) {
       </div>
       <ChevronLeft
         className={cn(
-          'absolute -right-3 top-10 z-50  cursor-pointer rounded-full border bg-background text-3xl text-foreground',
-          isMinimized && 'rotate-180'
+          "absolute -right-3 top-10 z-50  cursor-pointer rounded-full border bg-background text-3xl text-foreground",
+          isMinimized && "rotate-180"
         )}
         onClick={handleToggle}
       />
       <div className="space-y-4 py-4">
         <div className="px-3 py-2">
           <div className="mt-3 space-y-1">
-            <DashboardNav items={navItems} />
+            <DashboardNav items={filteredNavItems} />
           </div>
         </div>
       </div>

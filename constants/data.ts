@@ -127,29 +127,34 @@ export const navItems: NavItem[] = [
     href: "/dashboard",
     icon: "dashboard",
     label: "Dashboard",
+    roles: ["admin", "superadmin"],
   },
   {
     title: "Employee List",
     href: "/dashboard/superadmin/employee-list",
     icon: "user",
     label: "employee",
+    roles: ["admin", "superadmin"],
   },
   {
     title: "Product List",
     href: "/dashboard/superadmin/product-list",
     icon: "product",
     label: "product",
+    roles: ["admin", "superadmin"],
   },
   {
     title: "Online Delivery",
     href: "/dashboard/superadmin/online-delevery",
     icon: "product",
     label: "product",
+    roles: ["admin", "superadmin"],
   },
   {
     title: "Account",
     icon: "user",
     label: "account",
+    roles: ["admin", "superadmin"],
     children: [
       {
         title: "Profile",
@@ -170,17 +175,20 @@ export const navItems: NavItem[] = [
     href: "/dashboard/superadmin/all-admin",
     icon: "kanban",
     label: "kanban",
+    roles: ["admin", "superadmin"],
   },
   {
     title: "Customer List",
     href: "/dashboard/superadmin/customer-list",
     icon: "user2",
     label: "kanban",
+    roles: ["admin", "superadmin"],
   },
   {
     title: "Marketing Strategy",
     href: "/dashboard/marketing-strategy",
     icon: "kanban",
     label: "kanban",
+    roles: ["admin", "superadmin"],
   },
 ];
