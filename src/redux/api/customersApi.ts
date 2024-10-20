@@ -2,7 +2,7 @@ import { baseApi } from "./baseApi";
 import { tagTypes } from "../tag-types";
 import { IMeta } from "../../../types";
 
-const PATH = "/customer";
+const PATH = "/users";
 export const customersApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     createCustomer: build.mutation({
