@@ -109,6 +109,7 @@ export default function NewAdmin() {
       // Log the response or handle it as needed
       console.log("🚀 ~ onSubmit ~ res:", res);
       toast.success("Admin created successfully");
+
       // Optionally reset the form or show a success message here
       form.reset();
     } catch (error) {

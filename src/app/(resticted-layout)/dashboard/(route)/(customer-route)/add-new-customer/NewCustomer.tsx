@@ -21,7 +21,6 @@ import { z } from "zod";
 import { getUserInfo } from "@/services/auth.services";
 import dynamic from "next/dynamic";
 
-
 import {
   Select,
   SelectContent,
@@ -34,33 +33,28 @@ import {
 import { toast } from "sonner";
 
 import { useCreateCustomerMutation } from "@/redux/api/customersApi";
-import { CustomerValidationSchema } from "./customerValidation";
+import { CustomerValidationSchema } from "./CustomerValidation";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export default function NewAdmin() {
-  const [createCustomer, ]= useCreateCustomerMutation()
+  const [createCustomer] = useCreateCustomerMutation();
   const [userRole, setUserRole] = useState("");
- 
 
-  
   const form = useForm<z.infer<typeof CustomerValidationSchema>>({
     resolver: zodResolver(CustomerValidationSchema),
     defaultValues: {
       password: "",
       customer: {
-        
         name: {
-          name: "", 
+          name: "",
         },
-        gender: "male", 
+        gender: "male",
         email: "",
         contactNo: "",
         address: "",
-      
       },
     },
-    
   });
 
   useEffect(() => {
@@ -74,8 +68,9 @@ export default function NewAdmin() {
 
   console.log("Form errors:", errors);
 
-
-  const onSubmit = async (formValues: z.infer<typeof CustomerValidationSchema>) => {
+  const onSubmit = async (
+    formValues: z.infer<typeof CustomerValidationSchema>
+  ) => {
     const data = {
       password: "pass456745@#$%^&*(",
       customer: {
@@ -86,31 +81,25 @@ export default function NewAdmin() {
         email: formValues.customer.email,
         contactNo: formValues.customer.contactNo,
         address: formValues.customer.address,
-       
-      }
+      },
     };
-    console.log(data)
-    
+    console.log(data);
+
     try {
       // Call the createAdmin mutation with the constructed data
       const res = await createCustomer(data).unwrap();
-      
+
       // Log the response or handle it as needed
       console.log("🚀 ~ onSubmit ~ res:", res);
-      toast.success("Customer created successfully")
+      toast.success("Customer created successfully");
       // Optionally reset the form or show a success message here
       form.reset();
     } catch (error) {
-      toast.error("Failed to create Customer")
+      toast.error("Failed to create Customer");
       console.error("Failed to create Customer:", error);
       // You can handle error messages or show a notification here
     }
   };
-  
-
- 
-
-  
 
   return (
     <>
@@ -126,19 +115,19 @@ export default function NewAdmin() {
                   </Button>
                 </Link>
                 <h1 className="flex-1 shrink-0 whitespace-nowrap text-xl font-semibold tracking-tight sm:grow-0">
-                  Create Admin
+                  Create Customer
                 </h1>
               </div>
               <div className="items-center gap-2 md:ml-auto md:flex">
                 <Button type="submit" size="sm" className="text-lg">
-                  Create Admin
+                  Create Customer
                 </Button>
               </div>
               <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
                 <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
                   <Card x-chunk="dashboard-07-chunk-0">
                     <CardHeader>
-                      <CardTitle>Admin Details</CardTitle>
+                      <CardTitle>Customer Details</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="grid gap-6">
@@ -147,9 +136,9 @@ export default function NewAdmin() {
                           name="customer.name.name" // Should match the schema
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Admin Name</FormLabel>
+                              <FormLabel>Customer Name</FormLabel>
                               <FormControl>
-                                <Input placeholder="Admin Name" {...field} />
+                                <Input placeholder="Customer Name" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -160,9 +149,12 @@ export default function NewAdmin() {
                           name="customer.email" // Should match the schema
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Admin Email</FormLabel>
+                              <FormLabel>Customer Email</FormLabel>
                               <FormControl>
-                                <Input placeholder="Admin Email" {...field} />
+                                <Input
+                                  placeholder="Customer Email"
+                                  {...field}
+                                />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -173,15 +165,18 @@ export default function NewAdmin() {
                           name="customer.contactNo" // Should match the schema
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Admin Phone</FormLabel>
+                              <FormLabel>Customer Phone</FormLabel>
                               <FormControl>
-                                <Input placeholder="Admin Phone" {...field} />
+                                <Input
+                                  placeholder="Customer Phone"
+                                  {...field}
+                                />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
                           )}
                         />
-                        
+
                         <FormField
                           control={form.control}
                           name="customer.address" // Should match the schema
@@ -201,8 +196,6 @@ export default function NewAdmin() {
                             </FormItem>
                           )}
                         />
-                        
-                      
                       </div>
                     </CardContent>
                   </Card>
@@ -227,21 +220,15 @@ export default function NewAdmin() {
                               <SelectGroup>
                                 <SelectItem value="male">Male</SelectItem>
                                 <SelectItem value="female">Female</SelectItem>
-                                <SelectItem value="other">
-                                other
-                                </SelectItem>
-                                
+                                <SelectItem value="other">other</SelectItem>
                               </SelectGroup>
                             </SelectContent>
                           </Select>
                         </FormControl>
-                        <FormMessage>
-                          
-                        </FormMessage>
+                        <FormMessage></FormMessage>
                       </FormItem>
                     )}
                   />
-                 
                 </div>
               </div>
             </div>
