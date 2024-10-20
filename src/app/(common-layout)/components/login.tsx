@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-"use client"
+"use client";
 /* eslint-disable react/no-unescaped-entities */
 import { Button } from "@/components/ui/button";
 import { Eye, EyeOff } from "lucide-react";
@@ -16,7 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { userLogin } from "@/services/actions/userLogin";
-import { toast } from "sonner";
+import { toast, Toaster } from "sonner";
 import { getUserInfo, storeUserInfo } from "@/services/auth.services";
 import { useRouter } from "next/navigation";
 import {
@@ -33,16 +33,15 @@ import Link from "next/link";
 export const description =
   "A simple login form with email and password. The submit button says 'Sign in'.";
 
-  interface IFormInput {
-    email: string;
-    password: string;
-  }
-  
-  export const validationSchema = z.object({
-    email: z.string().email("Please enter a valid email address!"),
-    password: z.string().min(6, "Must be at least 6 characters"),
-  });
-  
+interface IFormInput {
+  email: string;
+  password: string;
+}
+
+export const validationSchema = z.object({
+  email: z.string().email("Please enter a valid email address!"),
+  password: z.string().min(6, "Must be at least 6 characters"),
+});
 
 export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -62,12 +61,10 @@ export function LoginForm() {
     try {
       const res = await userLogin(values);
       console.log("🚀 ~ onSubmit ~ res:", res);
-
       if (res?.data?.accessToken) {
         toast.success(res?.message || "Login successful!");
-
         storeUserInfo({ accessToken: res?.data?.accessToken });
-
+        toast.success("Login Successfull");
         const userInfo = getUserInfo();
         console.log("🚀 ~ onSubmit ~ userInfo:", userInfo);
 
@@ -106,7 +103,7 @@ export function LoginForm() {
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
-        <Form {...form}>
+          <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="grid gap-4">
                 <div className="grid gap-2">
@@ -171,8 +168,6 @@ export function LoginForm() {
             </form>
           </Form>
         </CardContent>
-        
-        
       </Card>
     </div>
   );
