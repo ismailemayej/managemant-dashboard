@@ -32,7 +32,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export default function NewAdmin() {
@@ -54,9 +53,7 @@ export default function NewAdmin() {
   const {
     formState: { errors },
   } = form;
-
   console.log("Form errors:", errors);
-
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
 
@@ -82,7 +79,6 @@ export default function NewAdmin() {
       console.error("Failed to create product:", error);
     }
   };
-
   useEffect(() => {
     const uploadImage = async () => {
       const cloudApi = new CloudApi({
