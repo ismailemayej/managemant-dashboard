@@ -2,7 +2,7 @@ import { IMeta } from "../../../types";
 import { tagTypes } from "../tag-types";
 import { baseApi } from "./baseApi";
 
-const PATH = "/employees";
+const PATH = "/users";
 
 export const employeeApi = baseApi.injectEndpoints({
     endpoints: (build) => ({

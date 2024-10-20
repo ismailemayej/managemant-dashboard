@@ -23,7 +23,7 @@ import { getUserInfo } from "@/services/auth.services";
 import dynamic from "next/dynamic";
 import { handleDeleteImage } from "@/utils/handleCloudinaryFileDelete";
 import CloudApi from "@/utils/CloudinaryApi";
-
+import { AdminSchema } from "./adminValidation";
 import {
   Select,
   SelectContent,
@@ -32,19 +32,36 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { EmployeSchema } from "../employeValidation";
+
+import { toast } from "sonner";
+import { useCreateEmployeeMutation } from "@/redux/api/employeeApi";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
-export default function NewEmploye() {
+export default function NewAdmin() {
+  const [createEmployee, ]= useCreateEmployeeMutation()
   const [userRole, setUserRole] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [value, setValue] = useState();
   const [image, setImage] = useState<string | undefined>(undefined);
 
-  const form = useForm<z.infer<typeof EmployeSchema>>({
-    resolver: zodResolver(EmployeSchema),
-    defaultValues: { title: "", email: "", phone: "", details: "" },
+  const form = useForm<z.infer<typeof AdminSchema>>({
+    resolver: zodResolver(AdminSchema),
+    defaultValues: {
+      password: "",
+      employee: {
+        designation: "", 
+        name: {
+          name: "", 
+        },
+        gender: "male", 
+        email: "",
+        contactNo: "",
+        address: "",
+        salary: "",
+      },
+    },
+    
   });
 
   useEffect(() => {
@@ -69,20 +86,40 @@ export default function NewEmploye() {
     }
   };
 
-  const onSubmit = async (formValues: z.infer<typeof EmployeSchema>) => {
+  const onSubmit = async (formValues: z.infer<typeof AdminSchema>) => {
     const data = {
-      ...formValues,
-      image,
+      password: formValues.password,
+      employee: {
+        designation: formValues.employee.designation,
+        name: {
+          name: formValues.employee.name.name,
+        },
+        gender: formValues.employee.gender,
+        email: formValues.employee.email,
+        contactNo: formValues.employee.contactNo,
+        address: formValues.employee.address,
+        salary: formValues.employee.salary,
+        profileImg: image, 
+      }
     };
-
-    console.log("🚀 ~ onSubmit ~ data:", data);
+    console.log(data)
+    
     try {
-      // const res = await createProduct(data).unwrap();
-      // console.log("🚀 ~ onSubmit ~ res:", res);
+      // Call the createAdmin mutation with the constructed data
+      const res = await createEmployee(data).unwrap();
+      
+      // Log the response or handle it as needed
+      console.log("🚀 ~ onSubmit ~ res:", res);
+      toast.success("Employee created successfully")
+      // Optionally reset the form or show a success message here
+      form.reset();
     } catch (error) {
-      console.error("Failed to create product:", error);
+      toast.error("Failed to create Employee")
+      console.error("Failed to create Employee:", error);
+      // You can handle error messages or show a notification here
     }
   };
+  
 
   useEffect(() => {
     const uploadImage = async () => {
@@ -143,30 +180,30 @@ export default function NewEmploye() {
                   </Button>
                 </Link>
                 <h1 className="flex-1 shrink-0 whitespace-nowrap text-xl font-semibold tracking-tight sm:grow-0">
-                  Create Employe
+                  Create Admin
                 </h1>
               </div>
               <div className="items-center gap-2 md:ml-auto md:flex">
                 <Button type="submit" size="sm" className="text-lg">
-                  Create Employe
+                  Create Admin
                 </Button>
               </div>
               <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
                 <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
                   <Card x-chunk="dashboard-07-chunk-0">
                     <CardHeader>
-                      <CardTitle>Employe Details</CardTitle>
+                      <CardTitle>Admin Details</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="grid gap-6">
                         <FormField
                           control={form.control}
-                          name="title" // Should match the schema
+                          name="employee.name.name" // Should match the schema
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Employe Name</FormLabel>
+                              <FormLabel>Admin Name</FormLabel>
                               <FormControl>
-                                <Input placeholder="Employe Name" {...field} />
+                                <Input placeholder="Admin Name" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -174,12 +211,12 @@ export default function NewEmploye() {
                         />
                         <FormField
                           control={form.control}
-                          name="email" // Should match the schema
+                          name="employee.email" // Should match the schema
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Employe Email</FormLabel>
+                              <FormLabel>Admin Email</FormLabel>
                               <FormControl>
-                                <Input placeholder="Employe Email" {...field} />
+                                <Input placeholder="Admin Email" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -187,12 +224,12 @@ export default function NewEmploye() {
                         />
                         <FormField
                           control={form.control}
-                          name="phone" // Should match the schema
+                          name="employee.contactNo" // Should match the schema
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Employe Phone</FormLabel>
+                              <FormLabel>Admin Phone</FormLabel>
                               <FormControl>
-                                <Input placeholder="Employe Phone" {...field} />
+                                <Input placeholder="Admin Phone" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -223,18 +260,33 @@ export default function NewEmploye() {
                         />
                         <FormField
                           control={form.control}
-                          name="details" // Should match the schema
+                          name="employee.address" // Should match the schema
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Designation</FormLabel>
+                              <FormLabel>Address</FormLabel>
                               <FormControl>
                                 <ReactQuill
                                   {...field}
                                   value={field.value || ""}
                                   onChange={field.onChange}
                                   className="w-full"
-                                  placeholder="details"
+                                  placeholder="address"
                                 />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        
+                       
+                        <FormField
+                          control={form.control}
+                          name="employee.salary" // Add salary field
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Salary</FormLabel>
+                              <FormControl>
+                                <Input placeholder="Salary" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -245,10 +297,10 @@ export default function NewEmploye() {
                   </Card>
                 </div>
 
-                <div className="grid auto-rows-max items-start gap-4 lg:gap-8">
+                <div className="grid auto-rows-max items-start gap-4 lg:gap-8 w-full">
                   <FormField
                     control={form.control}
-                    name="gender"
+                    name="employee.gender"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Gender</FormLabel>
@@ -257,7 +309,7 @@ export default function NewEmploye() {
                             onValueChange={field.onChange}
                             value={field.value}
                           >
-                            <SelectTrigger className="w-[180px]">
+                            <SelectTrigger className="w-full">
                               <SelectValue placeholder="Select Gender" />
                             </SelectTrigger>
                             <SelectContent>
@@ -275,21 +327,36 @@ export default function NewEmploye() {
                           </Select>
                         </FormControl>
                         <FormMessage>
-                          {errors.gender && (
-                            <span className="text-red-500">
-                              {errors.gender.message}
-                            </span>
-                          )}
+                          
                         </FormMessage>
                       </FormItem>
                     )}
                   />
+                  <FormField
+                          control={form.control}
+                          name="employee.designation" // Add password field here
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Designation</FormLabel>
+                              <FormControl>
+                                <Input
+                                  type="text"
+                                  placeholder="designation"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage>
+                                
+                              </FormMessage>
+                            </FormItem>
+                          )}
+                        />
                   <Card
                     className="overflow-hidden"
                     x-chunk="dashboard-07-chunk-4"
                   >
                     <CardHeader>
-                      <CardTitle>Employe Profile image</CardTitle>
+                      <CardTitle>Admin Profile Image</CardTitle>
                     </CardHeader>
                     <CardContent>
                       {file ? (
