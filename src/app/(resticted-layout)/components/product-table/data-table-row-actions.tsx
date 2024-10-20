@@ -2,7 +2,7 @@
 import { Row } from "@tanstack/react-table";
 import { Modal2 } from "@/components/dialog/Dialog2";
 import { PencilOff, Trash2 } from "lucide-react";
-import ProductUpdateModal from "../../dashboard/(route)/superadmin/(product-route)/add-new-product/product-update-modal";
+import ProductUpdateModal from "../../dashboard/(route)/(product-route)/add-new-product/product-update-modal";
 import { Product } from "./data/schema";
 
 

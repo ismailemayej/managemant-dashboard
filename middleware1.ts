@@ -13,7 +13,7 @@ const AuthRoutes = ['/login', '/signup'];
  const roleBasedPrivateRoutes = {
     customer: [/^\/shipping/, /^\/auth/],
     admin: [/^\/dashboard\/admin/],
-    superAdmin: [/^\/dashboard\/superadmin/],
+    superAdmin: [/^\/dashboard\/],
  };
 
 
@@ -55,5 +55,5 @@ if (!accessToken) {
 
 
 export const config = {
-    matcher: ['/login', '/signup', '/dashboard/:page*', '/dashboard/admin/:page*','/dashboard/superadmin/:page*', '/shipping/:page*','/auth/:page*']
+    matcher: ['/login', '/signup', '/dashboard/:page*', '/dashboard/admin/:page*','/dashboard/:page*', '/shipping/:page*','/auth/:page*']
 }
