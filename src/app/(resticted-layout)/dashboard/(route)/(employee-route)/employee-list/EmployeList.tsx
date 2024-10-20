@@ -11,11 +11,11 @@ const EmployeList = () => {
   const pathRoute = [
     {
       name: "Dashboard",
-      link: "/dashboard/superadmin",
+      link: "/dashboard",
     },
     {
       name: "Customers",
-      link: "/dashboard/superadmin/employee-list",
+      link: "/dashboard/employee-list",
     },
   ];
   return (
@@ -25,7 +25,7 @@ const EmployeList = () => {
         title="Total Employee"
         subtitle="Manage employees (Server side table functionalities.)"
         right={
-          <CommonButton link="/dashboard/superadmin/add-new-employee">
+          <CommonButton link="/dashboard/add-new-employee">
             Add New Employee
           </CommonButton>
         }

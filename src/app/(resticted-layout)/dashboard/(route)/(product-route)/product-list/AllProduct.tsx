@@ -1,5 +1,5 @@
 "use client";
-import { columns } from "../../../../../components/product-table/columns";
+import { columns } from "../../../../components/product-table/columns";
 import { ProductListDataTable } from "@/app/(resticted-layout)/components/product-table/product-list-data-table";
 import UiRoute from "@/components/UiRoute/UiRoute";
 import CommonButton from "@/components/button/CummonButton";
@@ -20,11 +20,11 @@ const AllProduct = () => {
   const pathRoute = [
     {
       name: "Dashboard",
-      link: "/dashboard/superadmin",
+      link: "/dashboard",
     },
     {
       name: "Customers",
-      link: "/dashboard/superadmin/product-list",
+      link: "/dashboard/product-list",
     },
   ];
   return (
@@ -34,7 +34,7 @@ const AllProduct = () => {
         title="Total Products"
         subtitle="Manage employees (Server side table functionalities.)"
         right={
-          <CommonButton link="/dashboard/superadmin/add-new-product">
+          <CommonButton link="/dashboard/add-new-product">
             Add New Product
           </CommonButton>
         }

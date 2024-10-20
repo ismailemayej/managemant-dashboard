@@ -3,7 +3,7 @@
 import { Row } from "@tanstack/react-table";
 import { Modal2 } from "@/components/dialog/Dialog2";
 import { PencilOff, Trash2 } from "lucide-react";
-import CustomerUpdateModal from "../../dashboard/(route)/superadmin/(customer-route)/customer-update-modal";
+import CustomerUpdateModal from "../../dashboard/(route)/(customer-route)/customer-update-modal";
 // import { labels } from './data/data'
 // import { taskSchema } from './data/schema'
 interface DataTableRowActionsProps<TData> {

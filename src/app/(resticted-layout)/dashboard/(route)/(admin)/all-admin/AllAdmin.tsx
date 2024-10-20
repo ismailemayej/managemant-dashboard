@@ -18,11 +18,11 @@ const AllAdmin = ({ admins }: { admins: Admin[] }) => {
   const pathRoute = [
     {
       name: "Dashboard",
-      link: "/dashboard/superadmin",
+      link: "/dashboard",
     },
     {
       name: "Admin",
-      link: "/dashboard/superadmin/all-admin",
+      link: "/dashboard/all-admin",
     },
   ];
 
@@ -33,7 +33,7 @@ const AllAdmin = ({ admins }: { admins: Admin[] }) => {
         title="Total Admin"
         subtitle="Manage employees (Server side table functionalities.)"
         right={
-          <CommonButton link="/dashboard/superadmin/add-new-admin">
+          <CommonButton link="/dashboard/add-new-admin">
             Add New Admin
           </CommonButton>
         }

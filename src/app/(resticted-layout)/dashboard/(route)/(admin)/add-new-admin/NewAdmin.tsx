@@ -32,9 +32,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useCreateAdminMutation } from "@/redux/api/adminsApi";
+import { toast } from "sonner";
+
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export default function NewAdmin() {
+  const [createAdmin] = useCreateAdminMutation();
   const [userRole, setUserRole] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [value, setValue] = useState();
@@ -42,7 +46,20 @@ export default function NewAdmin() {
 
   const form = useForm<z.infer<typeof AdminSchema>>({
     resolver: zodResolver(AdminSchema),
-    defaultValues: { title: "", email: "", phone: "", details: "" },
+    defaultValues: {
+      password: "",
+      admin: {
+        designation: "",
+        name: {
+          name: "",
+        },
+        gender: "male",
+        email: "",
+        contactNo: "",
+        address: "",
+        salary: "",
+      },
+    },
   });
 
   useEffect(() => {
@@ -53,7 +70,9 @@ export default function NewAdmin() {
   const {
     formState: { errors },
   } = form;
+
   console.log("Form errors:", errors);
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
 
@@ -67,18 +86,38 @@ export default function NewAdmin() {
 
   const onSubmit = async (formValues: z.infer<typeof AdminSchema>) => {
     const data = {
-      ...formValues,
-      image,
+      password: formValues.password,
+      admin: {
+        designation: formValues.admin.designation,
+        name: {
+          name: formValues.admin.name.name,
+        },
+        gender: formValues.admin.gender,
+        email: formValues.admin.email,
+        contactNo: formValues.admin.contactNo,
+        address: formValues.admin.address,
+        salary: formValues.admin.salary,
+        profileImg: image,
+      },
     };
+    console.log(data);
 
-    console.log("🚀 ~ onSubmit ~ data:", data);
     try {
-      // const res = await createProduct(data).unwrap();
-      // console.log("🚀 ~ onSubmit ~ res:", res);
+      // Call the createAdmin mutation with the constructed data
+      const res = await createAdmin(data).unwrap();
+
+      // Log the response or handle it as needed
+      console.log("🚀 ~ onSubmit ~ res:", res);
+      toast.success("Admin created successfully");
+      // Optionally reset the form or show a success message here
+      form.reset();
     } catch (error) {
-      console.error("Failed to create product:", error);
+      toast.error("Failed to create admin");
+      console.error("Failed to create admin:", error);
+      // You can handle error messages or show a notification here
     }
   };
+
   useEffect(() => {
     const uploadImage = async () => {
       const cloudApi = new CloudApi({
@@ -156,7 +195,7 @@ export default function NewAdmin() {
                       <div className="grid gap-6">
                         <FormField
                           control={form.control}
-                          name="title" // Should match the schema
+                          name="admin.name.name" // Should match the schema
                           render={({ field }) => (
                             <FormItem>
                               <FormLabel>Admin Name</FormLabel>
@@ -169,7 +208,7 @@ export default function NewAdmin() {
                         />
                         <FormField
                           control={form.control}
-                          name="email" // Should match the schema
+                          name="admin.email" // Should match the schema
                           render={({ field }) => (
                             <FormItem>
                               <FormLabel>Admin Email</FormLabel>
@@ -182,7 +221,7 @@ export default function NewAdmin() {
                         />
                         <FormField
                           control={form.control}
-                          name="phone" // Should match the schema
+                          name="admin.contactNo" // Should match the schema
                           render={({ field }) => (
                             <FormItem>
                               <FormLabel>Admin Phone</FormLabel>
@@ -218,18 +257,32 @@ export default function NewAdmin() {
                         />
                         <FormField
                           control={form.control}
-                          name="details" // Should match the schema
+                          name="admin.address" // Should match the schema
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Designation</FormLabel>
+                              <FormLabel>Address</FormLabel>
                               <FormControl>
                                 <ReactQuill
                                   {...field}
                                   value={field.value || ""}
                                   onChange={field.onChange}
                                   className="w-full"
-                                  placeholder="details"
+                                  placeholder="address"
                                 />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={form.control}
+                          name="admin.salary" // Add salary field
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Salary</FormLabel>
+                              <FormControl>
+                                <Input placeholder="Salary" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -240,10 +293,10 @@ export default function NewAdmin() {
                   </Card>
                 </div>
 
-                <div className="grid auto-rows-max items-start gap-4 lg:gap-8">
+                <div className="grid auto-rows-max items-start gap-4 lg:gap-8 w-full">
                   <FormField
                     control={form.control}
-                    name="gender"
+                    name="admin.gender"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Gender</FormLabel>
@@ -252,7 +305,7 @@ export default function NewAdmin() {
                             onValueChange={field.onChange}
                             value={field.value}
                           >
-                            <SelectTrigger className="w-[180px]">
+                            <SelectTrigger className="w-full">
                               <SelectValue placeholder="Select Gender" />
                             </SelectTrigger>
                             <SelectContent>
@@ -269,13 +322,24 @@ export default function NewAdmin() {
                             </SelectContent>
                           </Select>
                         </FormControl>
-                        <FormMessage>
-                          {errors.gender && (
-                            <span className="text-red-500">
-                              {errors.gender.message}
-                            </span>
-                          )}
-                        </FormMessage>
+                        <FormMessage></FormMessage>
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="admin.designation" // Add password field here
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Designation</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="text"
+                            placeholder="designation"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage></FormMessage>
                       </FormItem>
                     )}
                   />
