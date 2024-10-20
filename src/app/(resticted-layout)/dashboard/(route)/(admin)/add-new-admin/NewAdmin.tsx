@@ -87,11 +87,21 @@ export default function NewAdmin() {
 
   const onSubmit = async (formValues: z.infer<typeof AdminSchema>) => {
     const data = {
-      ...formValues,
-      image,
+      password: formValues.password,
+      admin: {
+        designation: formValues.admin.designation,
+        name: {
+          name: formValues.admin.name.name,
+        },
+        gender: formValues.admin.gender,
+        email: formValues.admin.email,
+        contactNo: formValues.admin.contactNo,
+        address: formValues.admin.address,
+        salary: formValues.admin.salary,
+        profileImg: image, 
+      }
     };
-  
-    console.log("🚀 ~ onSubmit ~ data:", data);
+    console.log(data)
     
     try {
       // Call the createAdmin mutation with the constructed data
@@ -103,6 +113,7 @@ export default function NewAdmin() {
       // Optionally reset the form or show a success message here
       form.reset();
     } catch (error) {
+      toast.error("Failed to create admin")
       console.error("Failed to create admin:", error);
       // You can handle error messages or show a notification here
     }
@@ -251,14 +262,14 @@ export default function NewAdmin() {
                           name="admin.address" // Should match the schema
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Designation</FormLabel>
+                              <FormLabel>Address</FormLabel>
                               <FormControl>
                                 <ReactQuill
                                   {...field}
                                   value={field.value || ""}
                                   onChange={field.onChange}
                                   className="w-full"
-                                  placeholder="details"
+                                  placeholder="address"
                                 />
                               </FormControl>
                               <FormMessage />
@@ -285,7 +296,7 @@ export default function NewAdmin() {
                   </Card>
                 </div>
 
-                <div className="grid auto-rows-max items-start gap-4 lg:gap-8">
+                <div className="grid auto-rows-max items-start gap-4 lg:gap-8 w-full">
                   <FormField
                     control={form.control}
                     name="admin.gender"
@@ -297,7 +308,7 @@ export default function NewAdmin() {
                             onValueChange={field.onChange}
                             value={field.value}
                           >
-                            <SelectTrigger className="w-[180px]">
+                            <SelectTrigger className="w-full">
                               <SelectValue placeholder="Select Gender" />
                             </SelectTrigger>
                             <SelectContent>
@@ -320,6 +331,25 @@ export default function NewAdmin() {
                       </FormItem>
                     )}
                   />
+                  <FormField
+                          control={form.control}
+                          name="admin.designation" // Add password field here
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Designation</FormLabel>
+                              <FormControl>
+                                <Input
+                                  type="text"
+                                  placeholder="designation"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage>
+                                
+                              </FormMessage>
+                            </FormItem>
+                          )}
+                        />
                   <Card
                     className="overflow-hidden"
                     x-chunk="dashboard-07-chunk-4"
