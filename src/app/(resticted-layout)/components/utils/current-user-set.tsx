@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Sidebar from '../sidebar';
 
 const CurrentUserSet = () => {
-  const [userInfo, setUserInfo] = useState<any>(getUserInfo()); // Initialize with user info
+  const [userInfo, setUserInfo] = useState<any>(); // Initialize with user info
 
   console.log("🚀 ~ userInfo:", userInfo);
 
@@ -22,7 +22,8 @@ const CurrentUserSet = () => {
   return (
     <div>
       {/* Use the role from userInfo dynamically */}
-      <Sidebar role={"superadmin"} />
+      <Sidebar role={userInfo?.role} />
+
     </div>
   );
 }
